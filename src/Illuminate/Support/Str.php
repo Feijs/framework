@@ -2,9 +2,9 @@
 
 namespace Illuminate\Support;
 
-use Stringy\Stringy;
-use RuntimeException;
 use Illuminate\Support\Traits\Macroable;
+use RuntimeException;
+use Stringy\Stringy;
 
 class Str
 {
@@ -34,7 +34,8 @@ class Str
     /**
      * Transliterate a UTF-8 value to ASCII.
      *
-     * @param  string  $value
+     * @param string $value
+     *
      * @return string
      */
     public static function ascii($value)
@@ -45,7 +46,8 @@ class Str
     /**
      * Convert a value to camel case.
      *
-     * @param  string  $value
+     * @param string $value
+     *
      * @return string
      */
     public static function camel($value)
@@ -60,8 +62,9 @@ class Str
     /**
      * Determine if a given string contains a given substring.
      *
-     * @param  string  $haystack
-     * @param  string|array  $needles
+     * @param string       $haystack
+     * @param string|array $needles
+     *
      * @return bool
      */
     public static function contains($haystack, $needles)
@@ -78,8 +81,9 @@ class Str
     /**
      * Determine if a given string ends with a given substring.
      *
-     * @param  string  $haystack
-     * @param  string|array  $needles
+     * @param string       $haystack
+     * @param string|array $needles
+     *
      * @return bool
      */
     public static function endsWith($haystack, $needles)
@@ -96,8 +100,9 @@ class Str
     /**
      * Cap a string with a single instance of a given value.
      *
-     * @param  string  $value
-     * @param  string  $cap
+     * @param string $value
+     * @param string $cap
+     *
      * @return string
      */
     public static function finish($value, $cap)
@@ -110,8 +115,9 @@ class Str
     /**
      * Determine if a given string matches a given pattern.
      *
-     * @param  string  $pattern
-     * @param  string  $value
+     * @param string $pattern
+     * @param string $value
+     *
      * @return bool
      */
     public static function is($pattern, $value)
@@ -133,7 +139,8 @@ class Str
     /**
      * Return the length of the given string.
      *
-     * @param  string  $value
+     * @param string $value
+     *
      * @return int
      */
     public static function length($value)
@@ -144,9 +151,10 @@ class Str
     /**
      * Limit the number of characters in a string.
      *
-     * @param  string  $value
-     * @param  int     $limit
-     * @param  string  $end
+     * @param string $value
+     * @param int    $limit
+     * @param string $end
+     *
      * @return string
      */
     public static function limit($value, $limit = 100, $end = '...')
@@ -161,7 +169,8 @@ class Str
     /**
      * Convert the given string to lower-case.
      *
-     * @param  string  $value
+     * @param string $value
+     *
      * @return string
      */
     public static function lower($value)
@@ -172,16 +181,17 @@ class Str
     /**
      * Limit the number of words in a string.
      *
-     * @param  string  $value
-     * @param  int     $words
-     * @param  string  $end
+     * @param string $value
+     * @param int    $words
+     * @param string $end
+     *
      * @return string
      */
     public static function words($value, $words = 100, $end = '...')
     {
         preg_match('/^\s*+(?:\S++\s*+){1,'.$words.'}/u', $value, $matches);
 
-        if (! isset($matches[0]) || strlen($value) === strlen($matches[0])) {
+        if (!isset($matches[0]) || strlen($value) === strlen($matches[0])) {
             return $value;
         }
 
@@ -191,8 +201,9 @@ class Str
     /**
      * Parse a Class@method style callback into class and method.
      *
-     * @param  string  $callback
-     * @param  string  $default
+     * @param string $callback
+     * @param string $default
+     *
      * @return array
      */
     public static function parseCallback($callback, $default)
@@ -203,8 +214,9 @@ class Str
     /**
      * Get the plural form of an English word.
      *
-     * @param  string  $value
-     * @param  int     $count
+     * @param string $value
+     * @param int    $count
+     *
      * @return string
      */
     public static function plural($value, $count = 2)
@@ -215,10 +227,11 @@ class Str
     /**
      * Generate a more truly "random" alpha-numeric string.
      *
-     * @param  int  $length
-     * @return string
+     * @param int $length
      *
      * @throws \RuntimeException
+     *
+     * @return string
      */
     public static function random($length = 16)
     {
@@ -238,10 +251,11 @@ class Str
     /**
      * Generate a more truly "random" bytes.
      *
-     * @param  int  $length
-     * @return string
+     * @param int $length
      *
      * @throws \RuntimeException
+     *
+     * @return string
      */
     public static function randomBytes($length = 16)
     {
@@ -265,7 +279,8 @@ class Str
      *
      * Should not be considered sufficient for cryptography, etc.
      *
-     * @param  int  $length
+     * @param int $length
+     *
      * @return string
      */
     public static function quickRandom($length = 16)
@@ -282,17 +297,18 @@ class Str
      *
      * Note: Adapted from Symfony\Component\Security\Core\Util\StringUtils.
      *
-     * @param  string  $knownString
-     * @param  string  $userInput
+     * @param string $knownString
+     * @param string $userInput
+     *
      * @return bool
      */
     public static function equals($knownString, $userInput)
     {
-        if (! is_string($knownString)) {
+        if (!is_string($knownString)) {
             $knownString = (string) $knownString;
         }
 
-        if (! is_string($userInput)) {
+        if (!is_string($userInput)) {
             $userInput = (string) $userInput;
         }
 
@@ -318,7 +334,8 @@ class Str
     /**
      * Convert the given string to upper-case.
      *
-     * @param  string  $value
+     * @param string $value
+     *
      * @return string
      */
     public static function upper($value)
@@ -329,7 +346,8 @@ class Str
     /**
      * Convert the given string to title case.
      *
-     * @param  string  $value
+     * @param string $value
+     *
      * @return string
      */
     public static function title($value)
@@ -340,7 +358,8 @@ class Str
     /**
      * Get the singular form of an English word.
      *
-     * @param  string  $value
+     * @param string $value
+     *
      * @return string
      */
     public static function singular($value)
@@ -351,8 +370,9 @@ class Str
     /**
      * Generate a URL friendly "slug" from a given string.
      *
-     * @param  string  $title
-     * @param  string  $separator
+     * @param string $title
+     * @param string $separator
+     *
      * @return string
      */
     public static function slug($title, $separator = '-')
@@ -376,8 +396,9 @@ class Str
     /**
      * Convert a string to snake case.
      *
-     * @param  string  $value
-     * @param  string  $delimiter
+     * @param string $value
+     * @param string $delimiter
+     *
      * @return string
      */
     public static function snake($value, $delimiter = '_')
@@ -388,7 +409,7 @@ class Str
             return static::$snakeCache[$key];
         }
 
-        if (! ctype_lower($value)) {
+        if (!ctype_lower($value)) {
             $value = strtolower(preg_replace('/(.)(?=[A-Z])/', '$1'.$delimiter, $value));
 
             $value = preg_replace('/\s+/', '', $value);
@@ -400,8 +421,9 @@ class Str
     /**
      * Determine if a given string starts with a given substring.
      *
-     * @param  string  $haystack
-     * @param  string|array  $needles
+     * @param string       $haystack
+     * @param string|array $needles
+     *
      * @return bool
      */
     public static function startsWith($haystack, $needles)
@@ -418,7 +440,8 @@ class Str
     /**
      * Convert a value to studly caps case.
      *
-     * @param  string  $value
+     * @param string $value
+     *
      * @return string
      */
     public static function studly($value)
@@ -437,9 +460,10 @@ class Str
     /**
      * Returns the portion of string specified by the start and length parameters.
      *
-     * @param  string  $string
-     * @param  int  $start
-     * @param  int  $length
+     * @param string $string
+     * @param int    $start
+     * @param int    $length
+     *
      * @return string
      */
     public static function substr($string, $start, $length = null)
@@ -450,7 +474,8 @@ class Str
     /**
      * Make a string's first character uppercase.
      *
-     * @param  string  $string
+     * @param string $string
+     *
      * @return string
      */
     public static function ucfirst($string)

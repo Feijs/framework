@@ -2,11 +2,11 @@
 
 namespace Illuminate\Encryption;
 
-use RuntimeException;
-use Illuminate\Support\Str;
 use Illuminate\Contracts\Encryption\DecryptException;
-use Illuminate\Contracts\Encryption\EncryptException;
 use Illuminate\Contracts\Encryption\Encrypter as EncrypterContract;
+use Illuminate\Contracts\Encryption\EncryptException;
+use Illuminate\Support\Str;
+use RuntimeException;
 
 class Encrypter extends BaseEncrypter implements EncrypterContract
 {
@@ -20,8 +20,9 @@ class Encrypter extends BaseEncrypter implements EncrypterContract
     /**
      * Create a new encrypter instance.
      *
-     * @param  string  $key
-     * @param  string  $cipher
+     * @param string $key
+     * @param string $cipher
+     *
      * @return void
      */
     public function __construct($key, $cipher = 'AES-128-CBC')
@@ -39,8 +40,9 @@ class Encrypter extends BaseEncrypter implements EncrypterContract
     /**
      * Determine if the given key and cipher combination is valid.
      *
-     * @param  string  $key
-     * @param  string  $cipher
+     * @param string $key
+     * @param string $cipher
+     *
      * @return bool
      */
     public static function supported($key, $cipher)
@@ -53,7 +55,8 @@ class Encrypter extends BaseEncrypter implements EncrypterContract
     /**
      * Encrypt the given value.
      *
-     * @param  string  $value
+     * @param string $value
+     *
      * @return string
      */
     public function encrypt($value)
@@ -77,7 +80,8 @@ class Encrypter extends BaseEncrypter implements EncrypterContract
     /**
      * Decrypt the given value.
      *
-     * @param  string  $payload
+     * @param string $payload
+     *
      * @return string
      */
     public function decrypt($payload)

@@ -2,21 +2,21 @@
 
 namespace Illuminate\Bus;
 
-use Closure;
 use ArrayAccess;
-use ReflectionClass;
-use RuntimeException;
-use ReflectionParameter;
-use InvalidArgumentException;
-use Illuminate\Pipeline\Pipeline;
-use Illuminate\Support\Collection;
-use Illuminate\Contracts\Queue\Queue;
-use Illuminate\Contracts\Bus\SelfHandling;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Contracts\Container\Container;
+use Closure;
+use Illuminate\Contracts\Bus\Dispatcher as DispatcherContract;
 use Illuminate\Contracts\Bus\HandlerResolver;
 use Illuminate\Contracts\Bus\QueueingDispatcher;
-use Illuminate\Contracts\Bus\Dispatcher as DispatcherContract;
+use Illuminate\Contracts\Bus\SelfHandling;
+use Illuminate\Contracts\Container\Container;
+use Illuminate\Contracts\Queue\Queue;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Pipeline\Pipeline;
+use Illuminate\Support\Collection;
+use InvalidArgumentException;
+use ReflectionClass;
+use ReflectionParameter;
+use RuntimeException;
 
 class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResolver
 {
@@ -65,8 +65,9 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
     /**
      * Create a new command dispatcher instance.
      *
-     * @param  \Illuminate\Contracts\Container\Container  $container
-     * @param  \Closure|null  $queueResolver
+     * @param \Illuminate\Contracts\Container\Container $container
+     * @param \Closure|null                             $queueResolver
+     *
      * @return void
      */
     public function __construct(Container $container, Closure $queueResolver = null)
@@ -79,8 +80,9 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
     /**
      * Marshal a command and dispatch it to its appropriate handler.
      *
-     * @param  mixed  $command
-     * @param  array  $array
+     * @param mixed $command
+     * @param array $array
+     *
      * @return mixed
      */
     public function dispatchFromArray($command, array $array)
@@ -91,9 +93,10 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
     /**
      * Marshal a command and dispatch it to its appropriate handler.
      *
-     * @param  mixed  $command
-     * @param  \ArrayAccess  $source
-     * @param  array  $extras
+     * @param mixed        $command
+     * @param \ArrayAccess $source
+     * @param array        $extras
+     *
      * @return mixed
      */
     public function dispatchFrom($command, ArrayAccess $source, array $extras = [])
@@ -104,21 +107,23 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
     /**
      * Marshal a command from the given array.
      *
-     * @param  string  $command
-     * @param  array  $array
+     * @param string $command
+     * @param array  $array
+     *
      * @return mixed
      */
     protected function marshalFromArray($command, array $array)
     {
-        return $this->marshal($command, new Collection, $array);
+        return $this->marshal($command, new Collection(), $array);
     }
 
     /**
      * Marshal a command from the given array accessible object.
      *
-     * @param  string  $command
-     * @param  \ArrayAccess  $source
-     * @param  array  $extras
+     * @param string       $command
+     * @param \ArrayAccess $source
+     * @param array        $extras
+     *
      * @return mixed
      */
     protected function marshal($command, ArrayAccess $source, array $extras = [])
@@ -139,10 +144,11 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
     /**
      * Get a parameter value for a marshaled command.
      *
-     * @param  string  $command
-     * @param  \ArrayAccess  $source
-     * @param  \ReflectionParameter  $parameter
-     * @param  array  $extras
+     * @param string               $command
+     * @param \ArrayAccess         $source
+     * @param \ReflectionParameter $parameter
+     * @param array                $extras
+     *
      * @return mixed
      */
     protected function getParameterValueForCommand($command, ArrayAccess $source,
@@ -166,8 +172,9 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
     /**
      * Dispatch a command to its appropriate handler.
      *
-     * @param  mixed  $command
-     * @param  \Closure|null  $afterResolving
+     * @param mixed         $command
+     * @param \Closure|null $afterResolving
+     *
      * @return mixed
      */
     public function dispatch($command, Closure $afterResolving = null)
@@ -182,8 +189,9 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
     /**
      * Dispatch a command to its appropriate handler in the current process.
      *
-     * @param  mixed  $command
-     * @param  \Closure|null  $afterResolving
+     * @param mixed         $command
+     * @param \Closure|null $afterResolving
+     *
      * @return mixed
      */
     public function dispatchNow($command, Closure $afterResolving = null)
@@ -208,7 +216,8 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
     /**
      * Determine if the given command should be queued.
      *
-     * @param  mixed  $command
+     * @param mixed $command
+     *
      * @return bool
      */
     protected function commandShouldBeQueued($command)
@@ -225,16 +234,17 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
     /**
      * Dispatch a command to its appropriate handler behind a queue.
      *
-     * @param  mixed  $command
-     * @return mixed
+     * @param mixed $command
      *
      * @throws \RuntimeException
+     *
+     * @return mixed
      */
     public function dispatchToQueue($command)
     {
         $queue = call_user_func($this->queueResolver);
 
-        if (! $queue instanceof Queue) {
+        if (!$queue instanceof Queue) {
             throw new RuntimeException('Queue resolver did not return a Queue implementation.');
         }
 
@@ -248,8 +258,9 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
     /**
      * Push the command onto the given queue instance.
      *
-     * @param  \Illuminate\Contracts\Queue\Queue  $queue
-     * @param  mixed  $command
+     * @param \Illuminate\Contracts\Queue\Queue $queue
+     * @param mixed                             $command
+     *
      * @return void
      */
     protected function pushCommandToQueue($queue, $command)
@@ -272,7 +283,8 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
     /**
      * Get the handler instance for the given command.
      *
-     * @param  mixed  $command
+     * @param mixed $command
+     *
      * @return mixed
      */
     public function resolveHandler($command)
@@ -287,7 +299,8 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
     /**
      * Get the handler class for the given command.
      *
-     * @param  mixed  $command
+     * @param mixed $command
+     *
      * @return string
      */
     public function getHandlerClass($command)
@@ -302,7 +315,8 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
     /**
      * Get the handler method for the given command.
      *
-     * @param  mixed  $command
+     * @param mixed $command
+     *
      * @return string
      */
     public function getHandlerMethod($command)
@@ -317,8 +331,9 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
     /**
      * Get the given handler segment for the given command.
      *
-     * @param  mixed  $command
-     * @param  int  $segment
+     * @param mixed $command
+     * @param int   $segment
+     *
      * @return string
      */
     protected function inflectSegment($command, $segment)
@@ -337,8 +352,9 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
     /**
      * Get the given segment from a given class handler.
      *
-     * @param  string  $className
-     * @param  int  $segment
+     * @param string $className
+     * @param int    $segment
+     *
      * @return string
      */
     protected function getMappingSegment($className, $segment)
@@ -349,8 +365,9 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
     /**
      * Get the given segment from a given class handler using the custom mapper.
      *
-     * @param  mixed  $command
-     * @param  int  $segment
+     * @param mixed $command
+     * @param int   $segment
+     *
      * @return string
      */
     protected function getMapperSegment($command, $segment)
@@ -361,7 +378,8 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
     /**
      * Register command-to-handler mappings.
      *
-     * @param  array  $commands
+     * @param array $commands
+     *
      * @return void
      */
     public function maps(array $commands)
@@ -372,7 +390,8 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
     /**
      * Register a fallback mapper callback.
      *
-     * @param  \Closure  $mapper
+     * @param \Closure $mapper
+     *
      * @return void
      */
     public function mapUsing(Closure $mapper)
@@ -383,9 +402,10 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
     /**
      * Map the command to a handler within a given root namespace.
      *
-     * @param  mixed  $command
-     * @param  string  $commandNamespace
-     * @param  string  $handlerNamespace
+     * @param mixed  $command
+     * @param string $commandNamespace
+     * @param string $handlerNamespace
+     *
      * @return string
      */
     public static function simpleMapping($command, $commandNamespace, $handlerNamespace)
@@ -398,7 +418,8 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
     /**
      * Set the pipes through which commands should be piped before dispatching.
      *
-     * @param  array  $pipes
+     * @param array $pipes
+     *
      * @return $this
      */
     public function pipeThrough(array $pipes)

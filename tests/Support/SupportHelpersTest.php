@@ -1,7 +1,7 @@
 <?php
 
-use Mockery as m;
 use Illuminate\Support\Str;
+use Mockery as m;
 
 class SupportHelpersTest extends PHPUnit_Framework_TestCase
 {
@@ -89,8 +89,8 @@ class SupportHelpersTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(['age' => 26], array_except($array, 'name'));
 
         $array = ['name' => 'taylor', 'framework' => ['language' => 'PHP', 'name' => 'Laravel']];
-        $this->assertEquals(['name' => 'taylor'], array_except($array, 'framework'));
-        $this->assertEquals(['name' => 'taylor', 'framework' => ['name' => 'Laravel']], array_except($array, 'framework.language'));
+        $this->assertEquals(['name'      => 'taylor'], array_except($array, 'framework'));
+        $this->assertEquals(['name'      => 'taylor', 'framework' => ['name' => 'Laravel']], array_except($array, 'framework.language'));
         $this->assertEquals(['framework' => ['language' => 'PHP']], array_except($array, ['name', 'framework.name']));
     }
 
@@ -282,8 +282,8 @@ class SupportHelpersTest extends PHPUnit_Framework_TestCase
 
     public function testObjectGet()
     {
-        $class = new StdClass;
-        $class->name = new StdClass;
+        $class = new StdClass();
+        $class->name = new StdClass();
         $class->name->first = 'Taylor';
 
         $this->assertEquals('Taylor', object_get($class, 'name.first'));
@@ -293,7 +293,7 @@ class SupportHelpersTest extends PHPUnit_Framework_TestCase
     {
         $object = (object) ['users' => ['name' => ['Taylor', 'Otwell']]];
         $array = [(object) ['users' => [(object) ['name' => 'Taylor']]]];
-        $dottedArray = ['users' => ['first.name' => 'Taylor']];
+        $dottedArray = ['users'     => ['first.name'       => 'Taylor']];
         $arrayAccess = new SupportTestArrayAccess(['price' => 56, 'user' => new SupportTestArrayAccess(['name' => 'John'])]);
 
         $this->assertEquals('Taylor', data_get($object, 'users.name.0'));
@@ -391,7 +391,7 @@ class SupportHelpersTest extends PHPUnit_Framework_TestCase
 
     public function testArrayAdd()
     {
-        $this->assertEquals(['surname' => 'Mövsümov'], array_add([], 'surname', 'Mövsümov'));
+        $this->assertEquals(['surname'   => 'Mövsümov'], array_add([], 'surname', 'Mövsümov'));
         $this->assertEquals(['developer' => ['name' => 'Ferid']], array_add([], 'developer.name', 'Ferid'));
     }
 

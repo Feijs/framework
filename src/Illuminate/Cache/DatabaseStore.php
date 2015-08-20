@@ -5,8 +5,8 @@ namespace Illuminate\Cache;
 use Closure;
 use Exception;
 use Illuminate\Contracts\Cache\Store;
-use Illuminate\Database\ConnectionInterface;
 use Illuminate\Contracts\Encryption\Encrypter as EncrypterContract;
+use Illuminate\Database\ConnectionInterface;
 
 class DatabaseStore implements Store
 {
@@ -41,10 +41,11 @@ class DatabaseStore implements Store
     /**
      * Create a new database store.
      *
-     * @param  \Illuminate\Database\ConnectionInterface  $connection
-     * @param  \Illuminate\Contracts\Encryption\Encrypter  $encrypter
-     * @param  string  $table
-     * @param  string  $prefix
+     * @param \Illuminate\Database\ConnectionInterface   $connection
+     * @param \Illuminate\Contracts\Encryption\Encrypter $encrypter
+     * @param string                                     $table
+     * @param string                                     $prefix
+     *
      * @return void
      */
     public function __construct(ConnectionInterface $connection, EncrypterContract $encrypter, $table, $prefix = '')
@@ -58,7 +59,8 @@ class DatabaseStore implements Store
     /**
      * Retrieve an item from the cache by key.
      *
-     * @param  string  $key
+     * @param string $key
+     *
      * @return mixed
      */
     public function get($key)
@@ -70,7 +72,7 @@ class DatabaseStore implements Store
         // If we have a cache record we will check the expiration time against current
         // time on the system and see if the record has expired. If it has, we will
         // remove the records from the database table so it isn't returned again.
-        if (! is_null($cache)) {
+        if (!is_null($cache)) {
             if (is_array($cache)) {
                 $cache = (object) $cache;
             }
@@ -88,9 +90,10 @@ class DatabaseStore implements Store
     /**
      * Store an item in the cache for a given number of minutes.
      *
-     * @param  string  $key
-     * @param  mixed   $value
-     * @param  int     $minutes
+     * @param string $key
+     * @param mixed  $value
+     * @param int    $minutes
+     *
      * @return void
      */
     public function put($key, $value, $minutes)
@@ -114,8 +117,9 @@ class DatabaseStore implements Store
     /**
      * Increment the value of an item in the cache.
      *
-     * @param  string  $key
-     * @param  mixed   $value
+     * @param string $key
+     * @param mixed  $value
+     *
      * @return void
      */
     public function increment($key, $value = 1)
@@ -130,8 +134,9 @@ class DatabaseStore implements Store
     /**
      * Increment the value of an item in the cache.
      *
-     * @param  string  $key
-     * @param  mixed   $value
+     * @param string $key
+     * @param mixed  $value
+     *
      * @return void
      */
     public function decrement($key, $value = 1)
@@ -146,9 +151,10 @@ class DatabaseStore implements Store
     /**
      * Increment or decrement an item in the cache.
      *
-     * @param  string  $key
-     * @param  mixed  $value
-     * @param  \Closure  $callback
+     * @param string   $key
+     * @param mixed    $value
+     * @param \Closure $callback
+     *
      * @return void
      */
     protected function incrementOrDecrement($key, $value, Closure $callback)
@@ -157,7 +163,7 @@ class DatabaseStore implements Store
 
         $cache = $this->table()->where('key', $prefixed)->lockForUpdate()->first();
 
-        if (! is_null($cache)) {
+        if (!is_null($cache)) {
             $current = $this->encrypter->decrypt($cache->value);
 
             if (is_numeric($current)) {
@@ -181,8 +187,9 @@ class DatabaseStore implements Store
     /**
      * Store an item in the cache indefinitely.
      *
-     * @param  string  $key
-     * @param  mixed   $value
+     * @param string $key
+     * @param mixed  $value
+     *
      * @return void
      */
     public function forever($key, $value)
@@ -193,7 +200,8 @@ class DatabaseStore implements Store
     /**
      * Remove an item from the cache.
      *
-     * @param  string  $key
+     * @param string $key
+     *
      * @return bool
      */
     public function forget($key)

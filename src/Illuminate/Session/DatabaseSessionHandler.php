@@ -2,8 +2,8 @@
 
 namespace Illuminate\Session;
 
-use SessionHandlerInterface;
 use Illuminate\Database\ConnectionInterface;
+use SessionHandlerInterface;
 
 class DatabaseSessionHandler implements SessionHandlerInterface, ExistenceAwareInterface
 {
@@ -31,8 +31,9 @@ class DatabaseSessionHandler implements SessionHandlerInterface, ExistenceAwareI
     /**
      * Create a new database session handler instance.
      *
-     * @param  \Illuminate\Database\ConnectionInterface  $connection
-     * @param  string  $table
+     * @param \Illuminate\Database\ConnectionInterface $connection
+     * @param string                                   $table
+     *
      * @return void
      */
     public function __construct(ConnectionInterface $connection, $table)
@@ -118,7 +119,8 @@ class DatabaseSessionHandler implements SessionHandlerInterface, ExistenceAwareI
     /**
      * Set the existence state for the session.
      *
-     * @param  bool  $value
+     * @param bool $value
+     *
      * @return $this
      */
     public function setExists($value)

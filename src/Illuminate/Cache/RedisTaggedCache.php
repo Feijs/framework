@@ -7,8 +7,9 @@ class RedisTaggedCache extends TaggedCache
     /**
      * Store an item in the cache indefinitely.
      *
-     * @param  string  $key
-     * @param  mixed   $value
+     * @param string $key
+     * @param mixed  $value
+     *
      * @return void
      */
     public function forever($key, $value)
@@ -33,8 +34,9 @@ class RedisTaggedCache extends TaggedCache
     /**
      * Store a copy of the full key for each namespace segment.
      *
-     * @param  string  $namespace
-     * @param  string  $key
+     * @param string $namespace
+     * @param string $key
+     *
      * @return void
      */
     protected function pushForeverKeys($namespace, $key)
@@ -63,7 +65,8 @@ class RedisTaggedCache extends TaggedCache
     /**
      * Delete all of the keys that have been stored forever.
      *
-     * @param  string  $foreverKey
+     * @param string $foreverKey
+     *
      * @return void
      */
     protected function deleteForeverValues($foreverKey)
@@ -78,7 +81,8 @@ class RedisTaggedCache extends TaggedCache
     /**
      * Get the forever reference key for the segment.
      *
-     * @param  string  $segment
+     * @param string $segment
+     *
      * @return string
      */
     protected function foreverKey($segment)

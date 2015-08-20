@@ -6,7 +6,7 @@ class SupportArrTest extends PHPUnit_Framework_TestCase
 {
     public function testAdd()
     {
-        $array = Arr::add(['name' => 'Desk'], 'price', 100);
+        $array = Arr::add(['name'   => 'Desk'], 'price', 100);
         $this->assertEquals(['name' => 'Desk', 'price' => 100], $array);
     }
 
@@ -20,7 +20,7 @@ class SupportArrTest extends PHPUnit_Framework_TestCase
     public function testDot()
     {
         $array = Arr::dot(['foo' => ['bar' => 'baz']]);
-        $this->assertEquals(['foo.bar' => 'baz'], $array);
+        $this->assertEquals(['foo.bar'     => 'baz'], $array);
     }
 
     public function testExcept()
@@ -145,7 +145,7 @@ class SupportArrTest extends PHPUnit_Framework_TestCase
                 ],
                 [
                     'name' => 'jane',
-                    'age' => 25,
+                    'age'  => 25,
                 ],
             ],
             'repositories' => [
@@ -176,12 +176,12 @@ class SupportArrTest extends PHPUnit_Framework_TestCase
             ],
             'users' => [
                 [
-                    'age' => 25,
+                    'age'  => 25,
                     'name' => 'jane',
                 ],
                 [
-                    'mail' => 'joe@example.com',
-                    'name' => 'joe',
+                    'mail'    => 'joe@example.com',
+                    'name'    => 'joe',
                     'numbers' => [0, 1, 2],
                 ],
             ],

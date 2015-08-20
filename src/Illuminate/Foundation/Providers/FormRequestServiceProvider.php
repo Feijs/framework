@@ -2,8 +2,8 @@
 
 namespace Illuminate\Foundation\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\ServiceProvider;
 use Symfony\Component\HttpFoundation\Request;
 
 class FormRequestServiceProvider extends ServiceProvider
@@ -38,8 +38,9 @@ class FormRequestServiceProvider extends ServiceProvider
     /**
      * Initialize the form request with data from the given request.
      *
-     * @param  \Illuminate\Foundation\Http\FormRequest  $form
-     * @param  \Symfony\Component\HttpFoundation\Request  $current
+     * @param \Illuminate\Foundation\Http\FormRequest   $form
+     * @param \Symfony\Component\HttpFoundation\Request $current
+     *
      * @return void
      */
     protected function initializeRequest(FormRequest $form, Request $current)

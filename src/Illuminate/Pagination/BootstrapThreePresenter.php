@@ -26,8 +26,9 @@ class BootstrapThreePresenter implements PresenterContract
     /**
      * Create a new Bootstrap presenter instance.
      *
-     * @param  \Illuminate\Contracts\Pagination\Paginator  $paginator
-     * @param  \Illuminate\Pagination\UrlWindow|null  $window
+     * @param \Illuminate\Contracts\Pagination\Paginator $paginator
+     * @param \Illuminate\Pagination\UrlWindow|null      $window
+     *
      * @return void
      */
     public function __construct(PaginatorContract $paginator, UrlWindow $window = null)
@@ -68,9 +69,10 @@ class BootstrapThreePresenter implements PresenterContract
     /**
      * Get HTML wrapper for an available page link.
      *
-     * @param  string  $url
-     * @param  int  $page
-     * @param  string|null  $rel
+     * @param string      $url
+     * @param int         $page
+     * @param string|null $rel
+     *
      * @return string
      */
     protected function getAvailablePageWrapper($url, $page, $rel = null)
@@ -83,7 +85,8 @@ class BootstrapThreePresenter implements PresenterContract
     /**
      * Get HTML wrapper for disabled text.
      *
-     * @param  string  $text
+     * @param string $text
+     *
      * @return string
      */
     protected function getDisabledTextWrapper($text)
@@ -94,7 +97,8 @@ class BootstrapThreePresenter implements PresenterContract
     /**
      * Get HTML wrapper for active text.
      *
-     * @param  string  $text
+     * @param string $text
+     *
      * @return string
      */
     protected function getActivePageWrapper($text)

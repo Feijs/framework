@@ -35,8 +35,9 @@ class JoinClause
     /**
      * Create a new join clause instance.
      *
-     * @param  string  $type
-     * @param  string  $table
+     * @param string $type
+     * @param string $table
+     *
      * @return void
      */
     public function __construct($type, $table)
@@ -48,11 +49,12 @@ class JoinClause
     /**
      * Add an "on" clause to the join.
      *
-     * @param  string  $first
-     * @param  string  $operator
-     * @param  string  $second
-     * @param  string  $boolean
-     * @param  bool  $where
+     * @param string $first
+     * @param string $operator
+     * @param string $second
+     * @param string $boolean
+     * @param bool   $where
+     *
      * @return $this
      */
     public function on($first, $operator, $second, $boolean = 'and', $where = false)
@@ -73,9 +75,10 @@ class JoinClause
     /**
      * Add an "or on" clause to the join.
      *
-     * @param  string  $first
-     * @param  string  $operator
-     * @param  string  $second
+     * @param string $first
+     * @param string $operator
+     * @param string $second
+     *
      * @return \Illuminate\Database\Query\JoinClause
      */
     public function orOn($first, $operator, $second)
@@ -86,10 +89,11 @@ class JoinClause
     /**
      * Add an "on where" clause to the join.
      *
-     * @param  string  $first
-     * @param  string  $operator
-     * @param  string  $second
-     * @param  string  $boolean
+     * @param string $first
+     * @param string $operator
+     * @param string $second
+     * @param string $boolean
+     *
      * @return \Illuminate\Database\Query\JoinClause
      */
     public function where($first, $operator, $second, $boolean = 'and')
@@ -100,9 +104,10 @@ class JoinClause
     /**
      * Add an "or on where" clause to the join.
      *
-     * @param  string  $first
-     * @param  string  $operator
-     * @param  string  $second
+     * @param string $first
+     * @param string $operator
+     * @param string $second
+     *
      * @return \Illuminate\Database\Query\JoinClause
      */
     public function orWhere($first, $operator, $second)
@@ -113,8 +118,9 @@ class JoinClause
     /**
      * Add an "on where is null" clause to the join.
      *
-     * @param  string  $column
-     * @param  string  $boolean
+     * @param string $column
+     * @param string $boolean
+     *
      * @return \Illuminate\Database\Query\JoinClause
      */
     public function whereNull($column, $boolean = 'and')
@@ -125,7 +131,8 @@ class JoinClause
     /**
      * Add an "or on where is null" clause to the join.
      *
-     * @param  string  $column
+     * @param string $column
+     *
      * @return \Illuminate\Database\Query\JoinClause
      */
     public function orWhereNull($column)
@@ -136,8 +143,9 @@ class JoinClause
     /**
      * Add an "on where is not null" clause to the join.
      *
-     * @param  string  $column
-     * @param  string  $boolean
+     * @param string $column
+     * @param string $boolean
+     *
      * @return \Illuminate\Database\Query\JoinClause
      */
     public function whereNotNull($column, $boolean = 'and')
@@ -148,7 +156,8 @@ class JoinClause
     /**
      * Add an "or on where is not null" clause to the join.
      *
-     * @param  string  $column
+     * @param string $column
+     *
      * @return \Illuminate\Database\Query\JoinClause
      */
     public function orWhereNotNull($column)
@@ -159,8 +168,9 @@ class JoinClause
     /**
      * Add an "on where in (...)" clause to the join.
      *
-     * @param  string  $column
-     * @param  array  $values
+     * @param string $column
+     * @param array  $values
+     *
      * @return \Illuminate\Database\Query\JoinClause
      */
     public function whereIn($column, array $values)
@@ -171,8 +181,9 @@ class JoinClause
     /**
      * Add an "on where not in (...)" clause to the join.
      *
-     * @param  string  $column
-     * @param  array  $values
+     * @param string $column
+     * @param array  $values
+     *
      * @return \Illuminate\Database\Query\JoinClause
      */
     public function whereNotIn($column, array $values)
@@ -183,8 +194,9 @@ class JoinClause
     /**
      * Add an "or on where in (...)" clause to the join.
      *
-     * @param  string  $column
-     * @param  array  $values
+     * @param string $column
+     * @param array  $values
+     *
      * @return \Illuminate\Database\Query\JoinClause
      */
     public function orWhereIn($column, array $values)
@@ -195,8 +207,9 @@ class JoinClause
     /**
      * Add an "or on where not in (...)" clause to the join.
      *
-     * @param  string  $column
-     * @param  array  $values
+     * @param string $column
+     * @param array  $values
+     *
      * @return \Illuminate\Database\Query\JoinClause
      */
     public function orWhereNotIn($column, array $values)

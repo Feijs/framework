@@ -30,7 +30,8 @@ class StatusCommand extends BaseCommand
     /**
      * Create a new migration rollback command instance.
      *
-     * @param  \Illuminate\Database\Migrations\Migrator $migrator
+     * @param \Illuminate\Database\Migrations\Migrator $migrator
+     *
      * @return \Illuminate\Database\Console\Migrations\StatusCommand
      */
     public function __construct(Migrator $migrator)
@@ -47,7 +48,7 @@ class StatusCommand extends BaseCommand
      */
     public function fire()
     {
-        if (! $this->migrator->repositoryExists()) {
+        if (!$this->migrator->repositoryExists()) {
             return $this->error('No migrations found.');
         }
 

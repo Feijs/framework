@@ -1,9 +1,9 @@
 <?php
 
-use Mockery as m;
-use Illuminate\Support\Collection;
-use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Support\Jsonable;
+use Illuminate\Support\Collection;
+use Mockery as m;
 
 class SupportCollectionTest extends PHPUnit_Framework_TestCase
 {
@@ -71,23 +71,23 @@ class SupportCollectionTest extends PHPUnit_Framework_TestCase
         $collection = new Collection(null);
         $this->assertSame([], $collection->all());
 
-        $collection = new Collection;
+        $collection = new Collection();
         $this->assertSame([], $collection->all());
     }
 
     public function testGetArrayableItems()
     {
-        $collection = new Collection;
+        $collection = new Collection();
 
         $class = new ReflectionClass($collection);
         $method = $class->getMethod('getArrayableItems');
         $method->setAccessible(true);
 
-        $items = new TestArrayableObject;
+        $items = new TestArrayableObject();
         $array = $method->invokeArgs($collection, [$items]);
         $this->assertSame(['foo' => 'bar'], $array);
 
-        $items = new TestJsonableObject;
+        $items = new TestJsonableObject();
         $array = $method->invokeArgs($collection, [$items]);
         $this->assertSame(['foo' => 'bar'], $array);
 
@@ -164,7 +164,7 @@ class SupportCollectionTest extends PHPUnit_Framework_TestCase
     public function testFilter()
     {
         $c = new Collection([['id' => 1, 'name' => 'Hello'], ['id' => 2, 'name' => 'World']]);
-        $this->assertEquals([1 => ['id' => 2, 'name' => 'World']], $c->filter(function ($item) {
+        $this->assertEquals([1     => ['id' => 2, 'name' => 'World']], $c->filter(function ($item) {
             return $item['id'] == 2;
         })->all());
 
@@ -287,7 +287,7 @@ class SupportCollectionTest extends PHPUnit_Framework_TestCase
 
     public function testCollapse()
     {
-        $data = new Collection([[$object1 = new StdClass], [$object2 = new StdClass]]);
+        $data = new Collection([[$object1 = new StdClass()], [$object2 = new StdClass()]]);
         $this->assertEquals([$object1, $object2], $data->collapse()->all());
     }
 
@@ -394,7 +394,7 @@ class SupportCollectionTest extends PHPUnit_Framework_TestCase
     public function testPluckWithArrayAndObjectValues()
     {
         $data = new Collection([(object) ['name' => 'taylor', 'email' => 'foo'], ['name' => 'dayle', 'email' => 'bar']]);
-        $this->assertEquals(['taylor' => 'foo', 'dayle' => 'bar'], $data->pluck('email', 'name')->all());
+        $this->assertEquals(['taylor'            => 'foo', 'dayle' => 'bar'], $data->pluck('email', 'name')->all());
         $this->assertEquals(['foo', 'bar'], $data->pluck('email')->all());
     }
 
@@ -445,7 +445,7 @@ class SupportCollectionTest extends PHPUnit_Framework_TestCase
      */
     public function testRandomThrowsAnErrorWhenRequestingMoreItemsThanAreAvailable()
     {
-        (new Collection)->random();
+        (new Collection())->random();
     }
 
     public function testTakeLast()
@@ -719,7 +719,7 @@ class SupportCollectionTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(1, $c->search(2));
         $this->assertEquals('foo', $c->search('bar'));
         $this->assertEquals(4, $c->search(function ($value) { return $value > 4; }));
-        $this->assertEquals('foo', $c->search(function ($value) { return ! is_numeric($value); }));
+        $this->assertEquals('foo', $c->search(function ($value) { return !is_numeric($value); }));
     }
 
     public function testSearchReturnsFalseWhenItemIsNotFound()
@@ -829,7 +829,7 @@ class TestAccessorEloquentTestStub
         $accessor = 'get'.lcfirst($attribute).'Attribute';
 
         if (method_exists($this, $accessor)) {
-            return ! is_null($this->$accessor());
+            return !is_null($this->$accessor());
         }
 
         return isset($this->$attribute);

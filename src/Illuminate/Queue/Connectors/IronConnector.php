@@ -2,9 +2,9 @@
 
 namespace Illuminate\Queue\Connectors;
 
-use IronMQ\IronMQ;
-use Illuminate\Queue\IronQueue;
 use Illuminate\Contracts\Encryption\Encrypter as EncrypterContract;
+use Illuminate\Queue\IronQueue;
+use IronMQ\IronMQ;
 
 class IronConnector implements ConnectorInterface
 {
@@ -18,7 +18,8 @@ class IronConnector implements ConnectorInterface
     /**
      * Create a new Iron connector instance.
      *
-     * @param  \Illuminate\Contracts\Encryption\Encrypter  $crypt
+     * @param \Illuminate\Contracts\Encryption\Encrypter $crypt
+     *
      * @return void
      */
     public function __construct(EncrypterContract $crypt)
@@ -29,7 +30,8 @@ class IronConnector implements ConnectorInterface
     /**
      * Establish a queue connection.
      *
-     * @param  array  $config
+     * @param array $config
+     *
      * @return \Illuminate\Contracts\Queue\Queue
      */
     public function connect(array $config)

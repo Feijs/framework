@@ -236,7 +236,7 @@ class DatabaseConnectionTest extends PHPUnit_Framework_TestCase
 
     protected function getMockConnection($methods = [], $pdo = null)
     {
-        $pdo = $pdo ?: new DatabaseConnectionTestMockPDO;
+        $pdo = $pdo ?: new DatabaseConnectionTestMockPDO();
         $defaults = ['getDefaultQueryGrammar', 'getDefaultPostProcessor', 'getDefaultSchemaGrammar'];
         $connection = $this->getMock('Illuminate\Database\Connection', array_merge($defaults, $methods), [$pdo]);
         $connection->enableQueryLog();

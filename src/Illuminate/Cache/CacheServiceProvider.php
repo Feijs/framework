@@ -2,9 +2,9 @@
 
 namespace Illuminate\Cache;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Cache\Console\ClearCommand;
 use Illuminate\Cache\Console\CacheTableCommand;
+use Illuminate\Cache\Console\ClearCommand;
+use Illuminate\Support\ServiceProvider;
 
 class CacheServiceProvider extends ServiceProvider
 {
@@ -31,7 +31,7 @@ class CacheServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton('memcached.connector', function () {
-            return new MemcachedConnector;
+            return new MemcachedConnector();
         });
 
         $this->registerCommands();

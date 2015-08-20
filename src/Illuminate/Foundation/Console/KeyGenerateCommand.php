@@ -2,8 +2,8 @@
 
 namespace Illuminate\Foundation\Console;
 
-use Illuminate\Support\Str;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputOption;
 
 class KeyGenerateCommand extends Command
@@ -51,7 +51,8 @@ class KeyGenerateCommand extends Command
     /**
      * Generate a random key for the application.
      *
-     * @param  string  $cipher
+     * @param string $cipher
+     *
      * @return string
      */
     protected function getRandomKey($cipher)

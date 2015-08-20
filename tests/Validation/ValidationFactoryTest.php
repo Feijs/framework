@@ -1,7 +1,7 @@
 <?php
 
-use Mockery as m;
 use Illuminate\Validation\Factory;
+use Mockery as m;
 
 class ValidationFactoryTest extends PHPUnit_Framework_TestCase
 {
@@ -28,7 +28,7 @@ class ValidationFactoryTest extends PHPUnit_Framework_TestCase
         $factory->replacer('replacer', $noop3);
         $factory->setPresenceVerifier($presence);
         $validator = $factory->make([], []);
-        $this->assertEquals(['foo' => $noop1, 'implicit' => $noop2], $validator->getExtensions());
+        $this->assertEquals(['foo'      => $noop1, 'implicit' => $noop2], $validator->getExtensions());
         $this->assertEquals(['replacer' => $noop3], $validator->getReplacers());
         $this->assertEquals($presence, $validator->getPresenceVerifier());
 

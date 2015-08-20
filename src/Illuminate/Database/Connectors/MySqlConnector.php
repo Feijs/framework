@@ -7,7 +7,8 @@ class MySqlConnector extends Connector implements ConnectorInterface
     /**
      * Establish a database connection.
      *
-     * @param  array  $config
+     * @param array $config
+     *
      * @return \PDO
      */
     public function connect(array $config)
@@ -33,7 +34,7 @@ class MySqlConnector extends Connector implements ConnectorInterface
         $charset = $config['charset'];
 
         $names = "set names '$charset'".
-            (! is_null($collation) ? " collate '$collation'" : '');
+            (!is_null($collation) ? " collate '$collation'" : '');
 
         $connection->prepare($names)->execute();
 
@@ -65,7 +66,8 @@ class MySqlConnector extends Connector implements ConnectorInterface
      *
      * Chooses socket or host/port based on the 'unix_socket' config value.
      *
-     * @param  array   $config
+     * @param array $config
+     *
      * @return string
      */
     protected function getDsn(array $config)
@@ -76,18 +78,20 @@ class MySqlConnector extends Connector implements ConnectorInterface
     /**
      * Determine if the given configuration array has a UNIX socket value.
      *
-     * @param  array  $config
+     * @param array $config
+     *
      * @return bool
      */
     protected function configHasSocket(array $config)
     {
-        return isset($config['unix_socket']) && ! empty($config['unix_socket']);
+        return isset($config['unix_socket']) && !empty($config['unix_socket']);
     }
 
     /**
      * Get the DSN string for a socket configuration.
      *
-     * @param  array  $config
+     * @param array $config
+     *
      * @return string
      */
     protected function getSocketDsn(array $config)
@@ -98,7 +102,8 @@ class MySqlConnector extends Connector implements ConnectorInterface
     /**
      * Get the DSN string for a host / port configuration.
      *
-     * @param  array  $config
+     * @param array $config
+     *
      * @return string
      */
     protected function getHostDsn(array $config)

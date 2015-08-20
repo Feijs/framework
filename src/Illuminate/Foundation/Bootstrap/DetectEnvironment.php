@@ -3,15 +3,16 @@
 namespace Illuminate\Foundation\Bootstrap;
 
 use Dotenv;
-use InvalidArgumentException;
 use Illuminate\Contracts\Foundation\Application;
+use InvalidArgumentException;
 
 class DetectEnvironment
 {
     /**
      * Bootstrap the given application.
      *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
+     * @param \Illuminate\Contracts\Foundation\Application $app
+     *
      * @return void
      */
     public function bootstrap(Application $app)

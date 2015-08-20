@@ -2,8 +2,8 @@
 
 namespace Illuminate\Foundation\Console;
 
-use Illuminate\Support\Str;
 use Illuminate\Console\GeneratorCommand;
+use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputOption;
 
 class HandlerEventCommand extends GeneratorCommand
@@ -32,7 +32,8 @@ class HandlerEventCommand extends GeneratorCommand
     /**
      * Build the class with the given name.
      *
-     * @param  string  $name
+     * @param string $name
+     *
      * @return string
      */
     protected function buildClass($name)
@@ -41,7 +42,7 @@ class HandlerEventCommand extends GeneratorCommand
 
         $event = $this->option('event');
 
-        if (! Str::startsWith($event, $this->laravel->getNamespace())) {
+        if (!Str::startsWith($event, $this->laravel->getNamespace())) {
             $event = $this->laravel->getNamespace().'Events\\'.$event;
         }
 
@@ -73,7 +74,8 @@ class HandlerEventCommand extends GeneratorCommand
     /**
      * Get the default namespace for the class.
      *
-     * @param  string  $rootNamespace
+     * @param string $rootNamespace
+     *
      * @return string
      */
     protected function getDefaultNamespace($rootNamespace)

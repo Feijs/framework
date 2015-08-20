@@ -39,7 +39,7 @@ class CommandMakeCommand extends GeneratorCommand
 
         if ($this->option('handler')) {
             $this->call('handler:command', [
-                'name' => $this->argument('name').'Handler',
+                'name'      => $this->argument('name').'Handler',
                 '--command' => $this->parseName($this->argument('name')),
             ]);
         }
@@ -66,7 +66,8 @@ class CommandMakeCommand extends GeneratorCommand
     /**
      * Get the default namespace for the class.
      *
-     * @param  string  $rootNamespace
+     * @param string $rootNamespace
+     *
      * @return string
      */
     protected function getDefaultNamespace($rootNamespace)

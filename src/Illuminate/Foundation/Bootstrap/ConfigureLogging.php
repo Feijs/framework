@@ -2,16 +2,17 @@
 
 namespace Illuminate\Foundation\Bootstrap;
 
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Log\Writer;
 use Monolog\Logger as Monolog;
-use Illuminate\Contracts\Foundation\Application;
 
 class ConfigureLogging
 {
     /**
      * Bootstrap the given application.
      *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
+     * @param \Illuminate\Contracts\Foundation\Application $app
+     *
      * @return void
      */
     public function bootstrap(Application $app)
@@ -40,7 +41,8 @@ class ConfigureLogging
     /**
      * Register the logger instance in the container.
      *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
+     * @param \Illuminate\Contracts\Foundation\Application $app
+     *
      * @return \Illuminate\Log\Writer
      */
     protected function registerLogger(Application $app)
@@ -55,8 +57,9 @@ class ConfigureLogging
     /**
      * Configure the Monolog handlers for the application.
      *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
-     * @param  \Illuminate\Log\Writer  $log
+     * @param \Illuminate\Contracts\Foundation\Application $app
+     * @param \Illuminate\Log\Writer                       $log
+     *
      * @return void
      */
     protected function configureHandlers(Application $app, Writer $log)
@@ -69,8 +72,9 @@ class ConfigureLogging
     /**
      * Configure the Monolog handlers for the application.
      *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
-     * @param  \Illuminate\Log\Writer  $log
+     * @param \Illuminate\Contracts\Foundation\Application $app
+     * @param \Illuminate\Log\Writer                       $log
+     *
      * @return void
      */
     protected function configureSingleHandler(Application $app, Writer $log)
@@ -81,8 +85,9 @@ class ConfigureLogging
     /**
      * Configure the Monolog handlers for the application.
      *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
-     * @param  \Illuminate\Log\Writer  $log
+     * @param \Illuminate\Contracts\Foundation\Application $app
+     * @param \Illuminate\Log\Writer                       $log
+     *
      * @return void
      */
     protected function configureDailyHandler(Application $app, Writer $log)
@@ -96,8 +101,9 @@ class ConfigureLogging
     /**
      * Configure the Monolog handlers for the application.
      *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
-     * @param  \Illuminate\Log\Writer  $log
+     * @param \Illuminate\Contracts\Foundation\Application $app
+     * @param \Illuminate\Log\Writer                       $log
+     *
      * @return void
      */
     protected function configureSyslogHandler(Application $app, Writer $log)
@@ -108,8 +114,9 @@ class ConfigureLogging
     /**
      * Configure the Monolog handlers for the application.
      *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
-     * @param  \Illuminate\Log\Writer  $log
+     * @param \Illuminate\Contracts\Foundation\Application $app
+     * @param \Illuminate\Log\Writer                       $log
+     *
      * @return void
      */
     protected function configureErrorlogHandler(Application $app, Writer $log)

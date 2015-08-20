@@ -3,8 +3,8 @@
 namespace Illuminate\View\Middleware;
 
 use Closure;
-use Illuminate\Support\ViewErrorBag;
 use Illuminate\Contracts\View\Factory as ViewFactory;
+use Illuminate\Support\ViewErrorBag;
 
 class ShareErrorsFromSession
 {
@@ -18,7 +18,8 @@ class ShareErrorsFromSession
     /**
      * Create a new error binder instance.
      *
-     * @param  \Illuminate\Contracts\View\Factory  $view
+     * @param \Illuminate\Contracts\View\Factory $view
+     *
      * @return void
      */
     public function __construct(ViewFactory $view)
@@ -29,8 +30,9 @@ class ShareErrorsFromSession
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -48,7 +50,7 @@ class ShareErrorsFromSession
         // assume that some errors are always available, which is convenient since
         // they don't have to continually run checks for the presence of errors.
         else {
-            $this->view->share('errors', new ViewErrorBag);
+            $this->view->share('errors', new ViewErrorBag());
         }
 
         return $next($request);
