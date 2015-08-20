@@ -1,7 +1,7 @@
 <?php
 
-use Mockery as m;
 use Illuminate\Validation\Validator;
+use Mockery as m;
 use Symfony\Component\HttpFoundation\File\File;
 
 class ValidationValidatorTest extends PHPUnit_Framework_TestCase
@@ -27,7 +27,7 @@ class ValidationValidatorTest extends PHPUnit_Framework_TestCase
     {
         $trans = $this->getRealTranslator();
         $v = new Validator($trans, ['foo' => 'bar', 'baz' => 'boom'], ['foo' => 'Same:baz']);
-        $v->setContainer(new Illuminate\Container\Container);
+        $v->setContainer(new Illuminate\Container\Container());
         $v->after(function ($validator) {
             $_SERVER['__validator.after.test'] = true;
         });
@@ -1448,8 +1448,8 @@ class ValidationValidatorTest extends PHPUnit_Framework_TestCase
 
     protected function getRealTranslator()
     {
-        $trans = new Symfony\Component\Translation\Translator('en', new Symfony\Component\Translation\MessageSelector);
-        $trans->addLoader('array', new Symfony\Component\Translation\Loader\ArrayLoader);
+        $trans = new Symfony\Component\Translation\Translator('en', new Symfony\Component\Translation\MessageSelector());
+        $trans->addLoader('array', new Symfony\Component\Translation\Loader\ArrayLoader());
 
         return $trans;
     }

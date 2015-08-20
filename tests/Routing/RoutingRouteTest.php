@@ -1,10 +1,10 @@
 <?php
 
+use Illuminate\Container\Container;
+use Illuminate\Events\Dispatcher;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
-use Illuminate\Events\Dispatcher;
-use Illuminate\Container\Container;
 use Symfony\Component\HttpFoundation\Response;
 
 class RoutingRouteTest extends PHPUnit_Framework_TestCase
@@ -396,7 +396,7 @@ class RoutingRouteTest extends PHPUnit_Framework_TestCase
 
     public function testModelBindingThroughIOC()
     {
-        $router = new Router(new Dispatcher, $container = new Container);
+        $router = new Router(new Dispatcher(), $container = new Container());
 
         $container->bind('RouteModelInterface', 'RouteModelBindingStub');
         $router->get('foo/{bar}', function ($name) { return $name; });
@@ -415,14 +415,14 @@ class RoutingRouteTest extends PHPUnit_Framework_TestCase
         $old = ['as' => 'foo.'];
         $this->assertEquals(['as' => 'foo.bar', 'prefix' => null, 'namespace' => null, 'where' => []], Router::mergeGroup(['as' => 'bar'], $old));
 
-        $old = ['where' => ['var1' => 'foo', 'var2' => 'bar']];
+        $old = ['where' => ['var1'    => 'foo', 'var2' => 'bar']];
         $this->assertEquals(['prefix' => null, 'namespace' => null, 'where' => [
-            'var1' => 'foo', 'var2' => 'baz', 'var3' => 'qux',
+            'var1'                    => 'foo', 'var2' => 'baz', 'var3' => 'qux',
         ]], Router::mergeGroup(['where' => ['var2' => 'baz', 'var3' => 'qux']], $old));
 
         $old = [];
         $this->assertEquals(['prefix' => null, 'namespace' => null, 'where' => [
-            'var1' => 'foo', 'var2' => 'bar',
+            'var1'                    => 'foo', 'var2' => 'bar',
         ]], Router::mergeGroup(['where' => ['var1' => 'foo', 'var2' => 'bar']], $old));
     }
 
@@ -457,7 +457,7 @@ class RoutingRouteTest extends PHPUnit_Framework_TestCase
          * nested with all layers present
          */
         $router = $this->getRouter();
-        $router->group(['prefix' => 'foo', 'as' => 'Foo::'], function () use ($router) {
+        $router->group(['prefix'     => 'foo', 'as' => 'Foo::'], function () use ($router) {
             $router->group(['prefix' => 'bar', 'as' => 'Bar::'], function () use ($router) {
                 $router->get('baz', ['as' => 'baz', function () { return 'hello'; }]);
             });
@@ -470,7 +470,7 @@ class RoutingRouteTest extends PHPUnit_Framework_TestCase
          * nested with layer skipped
          */
         $router = $this->getRouter();
-        $router->group(['prefix' => 'foo', 'as' => 'Foo::'], function () use ($router) {
+        $router->group(['prefix'     => 'foo', 'as' => 'Foo::'], function () use ($router) {
             $router->group(['prefix' => 'bar'], function () use ($router) {
                 $router->get('baz', ['as' => 'baz', function () { return 'hello'; }]);
             });
@@ -525,7 +525,7 @@ class RoutingRouteTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('Namespace\\Controller@action', $action['controller']);
 
         $router = $this->getRouter();
-        $router->group(['namespace' => 'Namespace'], function () use ($router) {
+        $router->group(['namespace'     => 'Namespace'], function () use ($router) {
             $router->group(['namespace' => 'Nested'], function () use ($router) {
                 $router->get('foo/bar', 'Controller@action');
             });
@@ -536,7 +536,7 @@ class RoutingRouteTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('Namespace\\Nested\\Controller@action', $action['controller']);
 
         $router = $this->getRouter();
-        $router->group(['prefix' => 'baz'], function () use ($router) {
+        $router->group(['prefix'        => 'baz'], function () use ($router) {
             $router->group(['namespace' => 'Namespace'], function () use ($router) {
                 $router->get('foo/bar', 'Controller@action');
             });
@@ -625,7 +625,7 @@ class RoutingRouteTest extends PHPUnit_Framework_TestCase
         $router = $this->getRouter();
         $router->resource('foo', 'FooController', ['names' => [
             'index' => 'foo',
-            'show' => 'bar',
+            'show'  => 'bar',
         ]]);
 
         $this->assertTrue($router->getRoutes()->hasNamedRoute('foo'));
@@ -679,7 +679,7 @@ class RoutingRouteTest extends PHPUnit_Framework_TestCase
             $_SERVER['route.test.controller.middleware.parameters.one'], $_SERVER['route.test.controller.middleware.parameters.two']
         );
 
-        $router = new Router(new Illuminate\Events\Dispatcher, $container = new Illuminate\Container\Container);
+        $router = new Router(new Illuminate\Events\Dispatcher(), $container = new Illuminate\Container\Container());
 
         $container->singleton('illuminate.route.dispatcher', function ($container) use ($router) {
             return new Illuminate\Routing\ControllerDispatcher($router, $container);
@@ -704,7 +704,7 @@ class RoutingRouteTest extends PHPUnit_Framework_TestCase
 
     protected function getRouter()
     {
-        return new Router(new Illuminate\Events\Dispatcher);
+        return new Router(new Illuminate\Events\Dispatcher());
     }
 }
 

@@ -3,17 +3,18 @@
 namespace Illuminate\Foundation\Bootstrap;
 
 use Illuminate\Config\Repository;
+use Illuminate\Contracts\Config\Repository as RepositoryContract;
+use Illuminate\Contracts\Foundation\Application;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\Config\Repository as RepositoryContract;
 
 class LoadConfiguration
 {
     /**
      * Bootstrap the given application.
      *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
+     * @param \Illuminate\Contracts\Foundation\Application $app
+     *
      * @return void
      */
     public function bootstrap(Application $app)
@@ -34,7 +35,7 @@ class LoadConfiguration
         // Next we will spin through all of the configuration files in the configuration
         // directory and load each one into the repository. This will make all of the
         // options available to the developer for use in various parts of this app.
-        if (! isset($loadedFromCache)) {
+        if (!isset($loadedFromCache)) {
             $this->loadConfigurationFiles($app, $config);
         }
 
@@ -46,8 +47,9 @@ class LoadConfiguration
     /**
      * Load the configuration items from all of the files.
      *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
-     * @param  \Illuminate\Contracts\Config\Repository  $config
+     * @param \Illuminate\Contracts\Foundation\Application $app
+     * @param \Illuminate\Contracts\Config\Repository      $config
+     *
      * @return void
      */
     protected function loadConfigurationFiles(Application $app, RepositoryContract $config)
@@ -60,7 +62,8 @@ class LoadConfiguration
     /**
      * Get all of the configuration files for the application.
      *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
+     * @param \Illuminate\Contracts\Foundation\Application $app
+     *
      * @return array
      */
     protected function getConfigurationFiles(Application $app)
@@ -79,7 +82,8 @@ class LoadConfiguration
     /**
      * Get the configuration file nesting path.
      *
-     * @param  \Symfony\Component\Finder\SplFileInfo  $file
+     * @param \Symfony\Component\Finder\SplFileInfo $file
+     *
      * @return string
      */
     protected function getConfigurationNesting(SplFileInfo $file)

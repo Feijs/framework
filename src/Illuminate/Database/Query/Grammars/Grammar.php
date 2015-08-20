@@ -2,8 +2,8 @@
 
 namespace Illuminate\Database\Query\Grammars;
 
-use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Grammar as BaseGrammar;
+use Illuminate\Database\Query\Builder;
 
 class Grammar extends BaseGrammar
 {
@@ -30,7 +30,8 @@ class Grammar extends BaseGrammar
     /**
      * Compile a select query into SQL.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
+     * @param \Illuminate\Database\Query\Builder $query
+     *
      * @return string
      */
     public function compileSelect(Builder $query)
@@ -45,7 +46,8 @@ class Grammar extends BaseGrammar
     /**
      * Compile the components necessary for a select clause.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
+     * @param \Illuminate\Database\Query\Builder $query
+     *
      * @return array
      */
     protected function compileComponents(Builder $query)
@@ -56,7 +58,7 @@ class Grammar extends BaseGrammar
             // To compile the query, we'll spin through each component of the query and
             // see if that component exists. If it does we'll just call the compiler
             // function for the component which is responsible for making the SQL.
-            if (! is_null($query->$component)) {
+            if (!is_null($query->$component)) {
                 $method = 'compile'.ucfirst($component);
 
                 $sql[$component] = $this->$method($query, $query->$component);
@@ -69,8 +71,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile an aggregated select clause.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $aggregate
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $aggregate
+     *
      * @return string
      */
     protected function compileAggregate(Builder $query, $aggregate)
@@ -90,8 +93,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile the "select *" portion of the query.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $columns
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $columns
+     *
      * @return string
      */
     protected function compileColumns(Builder $query, $columns)
@@ -99,7 +103,7 @@ class Grammar extends BaseGrammar
         // If the query is actually performing an aggregating select, we will let that
         // compiler handle the building of the select clauses, as it will need some
         // more syntax that is best handled by that function to keep things neat.
-        if (! is_null($query->aggregate)) {
+        if (!is_null($query->aggregate)) {
             return;
         }
 
@@ -111,8 +115,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile the "from" portion of the query.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  string  $table
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param string                             $table
+     *
      * @return string
      */
     protected function compileFrom(Builder $query, $table)
@@ -123,8 +128,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile the "join" portions of the query.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $joins
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $joins
+     *
      * @return string
      */
     protected function compileJoins(Builder $query, $joins)
@@ -170,7 +176,8 @@ class Grammar extends BaseGrammar
     /**
      * Create a join clause constraint segment.
      *
-     * @param  array   $clause
+     * @param array $clause
+     *
      * @return string
      */
     protected function compileJoinConstraint(array $clause)
@@ -193,7 +200,8 @@ class Grammar extends BaseGrammar
     /**
      * Compile the "where" portions of the query.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
+     * @param \Illuminate\Database\Query\Builder $query
+     *
      * @return string
      */
     protected function compileWheres(Builder $query)
@@ -228,8 +236,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile a nested where clause.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $where
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $where
+     *
      * @return string
      */
     protected function whereNested(Builder $query, $where)
@@ -242,8 +251,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile a where condition with a sub-select.
      *
-     * @param  \Illuminate\Database\Query\Builder $query
-     * @param  array   $where
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $where
+     *
      * @return string
      */
     protected function whereSub(Builder $query, $where)
@@ -256,8 +266,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile a basic where clause.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $where
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $where
+     *
      * @return string
      */
     protected function whereBasic(Builder $query, $where)
@@ -270,8 +281,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile a "between" where clause.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $where
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $where
+     *
      * @return string
      */
     protected function whereBetween(Builder $query, $where)
@@ -284,8 +296,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile a where exists clause.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $where
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $where
+     *
      * @return string
      */
     protected function whereExists(Builder $query, $where)
@@ -296,8 +309,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile a where exists clause.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $where
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $where
+     *
      * @return string
      */
     protected function whereNotExists(Builder $query, $where)
@@ -308,8 +322,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile a "where in" clause.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $where
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $where
+     *
      * @return string
      */
     protected function whereIn(Builder $query, $where)
@@ -326,8 +341,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile a "where not in" clause.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $where
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $where
+     *
      * @return string
      */
     protected function whereNotIn(Builder $query, $where)
@@ -344,8 +360,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile a where in sub-select clause.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $where
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $where
+     *
      * @return string
      */
     protected function whereInSub(Builder $query, $where)
@@ -358,8 +375,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile a where not in sub-select clause.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $where
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $where
+     *
      * @return string
      */
     protected function whereNotInSub(Builder $query, $where)
@@ -372,8 +390,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile a "where null" clause.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $where
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $where
+     *
      * @return string
      */
     protected function whereNull(Builder $query, $where)
@@ -384,8 +403,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile a "where not null" clause.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $where
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $where
+     *
      * @return string
      */
     protected function whereNotNull(Builder $query, $where)
@@ -396,8 +416,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile a "where date" clause.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $where
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $where
+     *
      * @return string
      */
     protected function whereDate(Builder $query, $where)
@@ -408,8 +429,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile a "where day" clause.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $where
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $where
+     *
      * @return string
      */
     protected function whereDay(Builder $query, $where)
@@ -420,8 +442,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile a "where month" clause.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $where
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $where
+     *
      * @return string
      */
     protected function whereMonth(Builder $query, $where)
@@ -432,8 +455,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile a "where year" clause.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $where
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $where
+     *
      * @return string
      */
     protected function whereYear(Builder $query, $where)
@@ -444,9 +468,10 @@ class Grammar extends BaseGrammar
     /**
      * Compile a date based where clause.
      *
-     * @param  string  $type
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $where
+     * @param string                             $type
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $where
+     *
      * @return string
      */
     protected function dateBasedWhere($type, Builder $query, $where)
@@ -459,8 +484,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile a raw where clause.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $where
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $where
+     *
      * @return string
      */
     protected function whereRaw(Builder $query, $where)
@@ -471,8 +497,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile the "group by" portions of the query.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $groups
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $groups
+     *
      * @return string
      */
     protected function compileGroups(Builder $query, $groups)
@@ -483,8 +510,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile the "having" portions of the query.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $havings
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $havings
+     *
      * @return string
      */
     protected function compileHavings(Builder $query, $havings)
@@ -497,7 +525,8 @@ class Grammar extends BaseGrammar
     /**
      * Compile a single having clause.
      *
-     * @param  array   $having
+     * @param array $having
+     *
      * @return string
      */
     protected function compileHaving(array $having)
@@ -515,7 +544,8 @@ class Grammar extends BaseGrammar
     /**
      * Compile a basic having clause.
      *
-     * @param  array   $having
+     * @param array $having
+     *
      * @return string
      */
     protected function compileBasicHaving($having)
@@ -530,8 +560,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile the "order by" portions of the query.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $orders
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $orders
+     *
      * @return string
      */
     protected function compileOrders(Builder $query, $orders)
@@ -548,8 +579,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile the "limit" portions of the query.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  int  $limit
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param int                                $limit
+     *
      * @return string
      */
     protected function compileLimit(Builder $query, $limit)
@@ -560,8 +592,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile the "offset" portions of the query.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  int  $offset
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param int                                $offset
+     *
      * @return string
      */
     protected function compileOffset(Builder $query, $offset)
@@ -572,7 +605,8 @@ class Grammar extends BaseGrammar
     /**
      * Compile the "union" queries attached to the main query.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
+     * @param \Illuminate\Database\Query\Builder $query
+     *
      * @return string
      */
     protected function compileUnions(Builder $query)
@@ -601,7 +635,8 @@ class Grammar extends BaseGrammar
     /**
      * Compile a single union statement.
      *
-     * @param  array  $union
+     * @param array $union
+     *
      * @return string
      */
     protected function compileUnion(array $union)
@@ -614,8 +649,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile an insert statement into SQL.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $values
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $values
+     *
      * @return string
      */
     public function compileInsert(Builder $query, array $values)
@@ -625,7 +661,7 @@ class Grammar extends BaseGrammar
         // basic routine regardless of an amount of records given to us to insert.
         $table = $this->wrapTable($query->from);
 
-        if (! is_array(reset($values))) {
+        if (!is_array(reset($values))) {
             $values = [$values];
         }
 
@@ -648,9 +684,10 @@ class Grammar extends BaseGrammar
     /**
      * Compile an insert and get ID statement into SQL.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array   $values
-     * @param  string  $sequence
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $values
+     * @param string                             $sequence
+     *
      * @return string
      */
     public function compileInsertGetId(Builder $query, $values, $sequence)
@@ -661,8 +698,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile an update statement into SQL.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $values
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $values
+     *
      * @return string
      */
     public function compileUpdate(Builder $query, $values)
@@ -700,7 +738,8 @@ class Grammar extends BaseGrammar
     /**
      * Compile a delete statement into SQL.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
+     * @param \Illuminate\Database\Query\Builder $query
+     *
      * @return string
      */
     public function compileDelete(Builder $query)
@@ -715,7 +754,8 @@ class Grammar extends BaseGrammar
     /**
      * Compile a truncate table statement into SQL.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
+     * @param \Illuminate\Database\Query\Builder $query
+     *
      * @return array
      */
     public function compileTruncate(Builder $query)
@@ -726,8 +766,9 @@ class Grammar extends BaseGrammar
     /**
      * Compile the lock into SQL.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  bool|string  $value
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param bool|string                        $value
+     *
      * @return string
      */
     protected function compileLock(Builder $query, $value)
@@ -738,7 +779,8 @@ class Grammar extends BaseGrammar
     /**
      * Concatenate an array of segments, removing empties.
      *
-     * @param  array   $segments
+     * @param array $segments
+     *
      * @return string
      */
     protected function concatenate($segments)
@@ -751,7 +793,8 @@ class Grammar extends BaseGrammar
     /**
      * Remove the leading boolean from a statement.
      *
-     * @param  string  $value
+     * @param string $value
+     *
      * @return string
      */
     protected function removeLeadingBoolean($value)

@@ -52,7 +52,8 @@ class Listener
     /**
      * Create a new queue listener.
      *
-     * @param  string  $commandPath
+     * @param string $commandPath
+     *
      * @return void
      */
     public function __construct($commandPath)
@@ -64,11 +65,12 @@ class Listener
     /**
      * Listen to the given queue connection.
      *
-     * @param  string  $connection
-     * @param  string  $queue
-     * @param  string  $delay
-     * @param  string  $memory
-     * @param  int     $timeout
+     * @param string $connection
+     * @param string $queue
+     * @param string $delay
+     * @param string $memory
+     * @param int    $timeout
+     *
      * @return void
      */
     public function listen($connection, $queue, $delay, $memory, $timeout = 60)
@@ -83,8 +85,9 @@ class Listener
     /**
      * Run the given process.
      *
-     * @param  \Symfony\Component\Process\Process  $process
-     * @param  int  $memory
+     * @param \Symfony\Component\Process\Process $process
+     * @param int                                $memory
+     *
      * @return void
      */
     public function runProcess(Process $process, $memory)
@@ -104,11 +107,12 @@ class Listener
     /**
      * Create a new Symfony process for the worker.
      *
-     * @param  string  $connection
-     * @param  string  $queue
-     * @param  int     $delay
-     * @param  int     $memory
-     * @param  int     $timeout
+     * @param string $connection
+     * @param string $queue
+     * @param int    $delay
+     * @param int    $memory
+     * @param int    $timeout
+     *
      * @return \Symfony\Component\Process\Process
      */
     public function makeProcess($connection, $queue, $delay, $memory, $timeout)
@@ -136,8 +140,9 @@ class Listener
     /**
      * Handle output from the worker process.
      *
-     * @param  int  $type
-     * @param  string  $line
+     * @param int    $type
+     * @param string $line
+     *
      * @return void
      */
     protected function handleWorkerOutput($type, $line)
@@ -150,7 +155,8 @@ class Listener
     /**
      * Determine if the memory limit has been exceeded.
      *
-     * @param  int  $memoryLimit
+     * @param int $memoryLimit
+     *
      * @return bool
      */
     public function memoryExceeded($memoryLimit)
@@ -171,7 +177,8 @@ class Listener
     /**
      * Set the output handler callback.
      *
-     * @param  \Closure  $outputHandler
+     * @param \Closure $outputHandler
+     *
      * @return void
      */
     public function setOutputHandler(Closure $outputHandler)
@@ -192,7 +199,8 @@ class Listener
     /**
      * Set the current environment.
      *
-     * @param  string  $environment
+     * @param string $environment
+     *
      * @return void
      */
     public function setEnvironment($environment)
@@ -213,7 +221,8 @@ class Listener
     /**
      * Set the amount of seconds to wait before polling the queue.
      *
-     * @param  int  $sleep
+     * @param int $sleep
+     *
      * @return void
      */
     public function setSleep($sleep)
@@ -224,7 +233,8 @@ class Listener
     /**
      * Set the amount of times to try a job before logging it failed.
      *
-     * @param  int  $tries
+     * @param int $tries
+     *
      * @return void
      */
     public function setMaxTries($tries)

@@ -4,8 +4,8 @@ namespace Illuminate\Database\Console\Seeds;
 
 use Illuminate\Console\Command;
 use Illuminate\Console\ConfirmableTrait;
-use Symfony\Component\Console\Input\InputOption;
 use Illuminate\Database\ConnectionResolverInterface as Resolver;
+use Symfony\Component\Console\Input\InputOption;
 
 class SeedCommand extends Command
 {
@@ -35,7 +35,8 @@ class SeedCommand extends Command
     /**
      * Create a new database seed command instance.
      *
-     * @param  \Illuminate\Database\ConnectionResolverInterface  $resolver
+     * @param \Illuminate\Database\ConnectionResolverInterface $resolver
+     *
      * @return void
      */
     public function __construct(Resolver $resolver)
@@ -52,7 +53,7 @@ class SeedCommand extends Command
      */
     public function fire()
     {
-        if (! $this->confirmToProceed()) {
+        if (!$this->confirmToProceed()) {
             return;
         }
 

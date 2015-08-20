@@ -1,7 +1,7 @@
 <?php
 
-use Mockery as m;
 use Illuminate\Contracts\Auth\PasswordBroker;
+use Mockery as m;
 
 class AuthPasswordBrokerTest extends PHPUnit_Framework_TestCase
 {
@@ -148,7 +148,7 @@ class AuthPasswordBrokerTest extends PHPUnit_Framework_TestCase
     protected function getMocks()
     {
         $mocks = [
-            'tokens' => m::mock('Illuminate\Auth\Passwords\TokenRepositoryInterface'),
+            'tokens'    => m::mock('Illuminate\Auth\Passwords\TokenRepositoryInterface'),
             'users'     => m::mock('Illuminate\Contracts\Auth\UserProvider'),
             'mailer'    => m::mock('Illuminate\Contracts\Mail\Mailer'),
             'view'      => 'resetLinkView',

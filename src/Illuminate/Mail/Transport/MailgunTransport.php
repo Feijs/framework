@@ -2,8 +2,8 @@
 
 namespace Illuminate\Mail\Transport;
 
-use Swift_Mime_Message;
 use GuzzleHttp\ClientInterface;
+use Swift_Mime_Message;
 
 class MailgunTransport extends Transport
 {
@@ -38,9 +38,10 @@ class MailgunTransport extends Transport
     /**
      * Create a new Mailgun transport instance.
      *
-     * @param  \GuzzleHttp\ClientInterface  $client
-     * @param  string  $key
-     * @param  string  $domain
+     * @param \GuzzleHttp\ClientInterface $client
+     * @param string                      $key
+     * @param string                      $domain
+     *
      * @return void
      */
     public function __construct(ClientInterface $client, $key, $domain)
@@ -70,7 +71,8 @@ class MailgunTransport extends Transport
     /**
      * Get the "to" payload field for the API request.
      *
-     * @param  \Swift_Mime_Message  $message
+     * @param \Swift_Mime_Message $message
+     *
      * @return array
      */
     protected function getTo(Swift_Mime_Message $message)
@@ -101,7 +103,8 @@ class MailgunTransport extends Transport
     /**
      * Set the API key being used by the transport.
      *
-     * @param  string  $key
+     * @param string $key
+     *
      * @return void
      */
     public function setKey($key)
@@ -122,7 +125,8 @@ class MailgunTransport extends Transport
     /**
      * Set the domain being used by the transport.
      *
-     * @param  string  $domain
+     * @param string $domain
+     *
      * @return void
      */
     public function setDomain($domain)

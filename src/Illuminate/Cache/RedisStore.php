@@ -31,9 +31,10 @@ class RedisStore extends TaggableStore implements Store
     /**
      * Create a new Redis store.
      *
-     * @param  \Illuminate\Redis\Database  $redis
-     * @param  string  $prefix
-     * @param  string  $connection
+     * @param \Illuminate\Redis\Database $redis
+     * @param string                     $prefix
+     * @param string                     $connection
+     *
      * @return void
      */
     public function __construct(Redis $redis, $prefix = '', $connection = 'default')
@@ -46,12 +47,13 @@ class RedisStore extends TaggableStore implements Store
     /**
      * Retrieve an item from the cache by key.
      *
-     * @param  string  $key
+     * @param string $key
+     *
      * @return mixed
      */
     public function get($key)
     {
-        if (! is_null($value = $this->connection()->get($this->prefix.$key))) {
+        if (!is_null($value = $this->connection()->get($this->prefix.$key))) {
             return is_numeric($value) ? $value : unserialize($value);
         }
     }
@@ -59,9 +61,10 @@ class RedisStore extends TaggableStore implements Store
     /**
      * Store an item in the cache for a given number of minutes.
      *
-     * @param  string  $key
-     * @param  mixed   $value
-     * @param  int     $minutes
+     * @param string $key
+     * @param mixed  $value
+     * @param int    $minutes
+     *
      * @return void
      */
     public function put($key, $value, $minutes)
@@ -76,8 +79,9 @@ class RedisStore extends TaggableStore implements Store
     /**
      * Increment the value of an item in the cache.
      *
-     * @param  string  $key
-     * @param  mixed   $value
+     * @param string $key
+     * @param mixed  $value
+     *
      * @return int
      */
     public function increment($key, $value = 1)
@@ -88,8 +92,9 @@ class RedisStore extends TaggableStore implements Store
     /**
      * Decrement the value of an item in the cache.
      *
-     * @param  string  $key
-     * @param  mixed   $value
+     * @param string $key
+     * @param mixed  $value
+     *
      * @return int
      */
     public function decrement($key, $value = 1)
@@ -100,8 +105,9 @@ class RedisStore extends TaggableStore implements Store
     /**
      * Store an item in the cache indefinitely.
      *
-     * @param  string  $key
-     * @param  mixed   $value
+     * @param string $key
+     * @param mixed  $value
+     *
      * @return void
      */
     public function forever($key, $value)
@@ -114,7 +120,8 @@ class RedisStore extends TaggableStore implements Store
     /**
      * Remove an item from the cache.
      *
-     * @param  string  $key
+     * @param string $key
+     *
      * @return bool
      */
     public function forget($key)
@@ -135,7 +142,8 @@ class RedisStore extends TaggableStore implements Store
     /**
      * Begin executing a new tags operation.
      *
-     * @param  array|mixed  $names
+     * @param array|mixed $names
+     *
      * @return \Illuminate\Cache\RedisTaggedCache
      */
     public function tags($names)
@@ -156,7 +164,8 @@ class RedisStore extends TaggableStore implements Store
     /**
      * Set the connection name to be used.
      *
-     * @param  string  $connection
+     * @param string $connection
+     *
      * @return void
      */
     public function setConnection($connection)
@@ -187,11 +196,12 @@ class RedisStore extends TaggableStore implements Store
     /**
      * Set the cache key prefix.
      *
-     * @param  string  $prefix
+     * @param string $prefix
+     *
      * @return void
      */
     public function setPrefix($prefix)
     {
-        $this->prefix = ! empty($prefix) ? $prefix.':' : '';
+        $this->prefix = !empty($prefix) ? $prefix.':' : '';
     }
 }

@@ -58,9 +58,9 @@ class FoundationProviderRepositoryTest extends PHPUnit_Framework_TestCase
 
     public function testShouldRecompileReturnsCorrectValue()
     {
-        $repo = new Illuminate\Foundation\ProviderRepository(m::mock('Illuminate\Contracts\Foundation\Application'), new Illuminate\Filesystem\Filesystem, __DIR__.'/services.json');
+        $repo = new Illuminate\Foundation\ProviderRepository(m::mock('Illuminate\Contracts\Foundation\Application'), new Illuminate\Filesystem\Filesystem(), __DIR__.'/services.json');
         $this->assertTrue($repo->shouldRecompile(null, []));
-        $this->assertTrue($repo->shouldRecompile(['providers' => ['foo']], ['foo', 'bar']));
+        $this->assertTrue($repo->shouldRecompile(['providers'  => ['foo']], ['foo', 'bar']));
         $this->assertFalse($repo->shouldRecompile(['providers' => ['foo']], ['foo']));
     }
 

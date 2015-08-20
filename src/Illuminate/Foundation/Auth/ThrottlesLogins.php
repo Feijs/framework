@@ -2,8 +2,8 @@
 
 namespace Illuminate\Foundation\Auth;
 
-use Illuminate\Http\Request;
 use Illuminate\Cache\RateLimiter;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
 
 trait ThrottlesLogins
@@ -11,7 +11,8 @@ trait ThrottlesLogins
     /**
      * Determine if the user has too many failed login attempts.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return bool
      */
     protected function hasTooManyLoginAttempts(Request $request)
@@ -25,7 +26,8 @@ trait ThrottlesLogins
     /**
      * Increment the login attempts for the user.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return int
      */
     protected function incrementLoginAttempts(Request $request)
@@ -38,7 +40,8 @@ trait ThrottlesLogins
     /**
      * Redirect the user after determining they are locked out.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     protected function sendLockoutResponse(Request $request)
@@ -57,7 +60,8 @@ trait ThrottlesLogins
     /**
      * Get the login lockout error message.
      *
-     * @param  int  $seconds
+     * @param int $seconds
+     *
      * @return string
      */
     protected function getLockoutErrorMessage($seconds)
@@ -70,7 +74,8 @@ trait ThrottlesLogins
     /**
      * Clear the login locks for the given user credentials.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return void
      */
     protected function clearLoginAttempts(Request $request)

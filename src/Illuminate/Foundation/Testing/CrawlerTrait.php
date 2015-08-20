@@ -3,13 +3,13 @@
 namespace Illuminate\Foundation\Testing;
 
 use Exception;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use InvalidArgumentException;
-use Symfony\Component\DomCrawler\Form;
-use Symfony\Component\DomCrawler\Crawler;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use PHPUnit_Framework_ExpectationFailedException as PHPUnitException;
+use Symfony\Component\DomCrawler\Crawler;
+use Symfony\Component\DomCrawler\Form;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 trait CrawlerTrait
 {
@@ -51,7 +51,8 @@ trait CrawlerTrait
     /**
      * Visit the given URI with a GET request.
      *
-     * @param  string  $uri
+     * @param string $uri
+     *
      * @return $this
      */
     public function visit($uri)
@@ -62,8 +63,9 @@ trait CrawlerTrait
     /**
      * Visit the given URI with a GET request.
      *
-     * @param  string  $uri
-     * @param  array  $headers
+     * @param string $uri
+     * @param array  $headers
+     *
      * @return $this
      */
     public function get($uri, array $headers = [])
@@ -78,9 +80,10 @@ trait CrawlerTrait
     /**
      * Visit the given URI with a POST request.
      *
-     * @param  string  $uri
-     * @param  array  $data
-     * @param  array  $headers
+     * @param string $uri
+     * @param array  $data
+     * @param array  $headers
+     *
      * @return $this
      */
     public function post($uri, array $data = [], array $headers = [])
@@ -95,9 +98,10 @@ trait CrawlerTrait
     /**
      * Visit the given URI with a PUT request.
      *
-     * @param  string  $uri
-     * @param  array  $data
-     * @param  array  $headers
+     * @param string $uri
+     * @param array  $data
+     * @param array  $headers
+     *
      * @return $this
      */
     public function put($uri, array $data = [], array $headers = [])
@@ -112,9 +116,10 @@ trait CrawlerTrait
     /**
      * Visit the given URI with a PATCH request.
      *
-     * @param  string  $uri
-     * @param  array  $data
-     * @param  array  $headers
+     * @param string $uri
+     * @param array  $data
+     * @param array  $headers
+     *
      * @return $this
      */
     public function patch($uri, array $data = [], array $headers = [])
@@ -129,9 +134,10 @@ trait CrawlerTrait
     /**
      * Visit the given URI with a DELETE request.
      *
-     * @param  string  $uri
-     * @param  array  $data
-     * @param  array  $headers
+     * @param string $uri
+     * @param array  $data
+     * @param array  $headers
+     *
      * @return $this
      */
     public function delete($uri, array $data = [], array $headers = [])
@@ -146,7 +152,8 @@ trait CrawlerTrait
     /**
      * Send the given request through the application.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return $this
      */
     public function handle(Request $request)
@@ -161,11 +168,12 @@ trait CrawlerTrait
     /**
      * Make a request to the application and create a Crawler instance.
      *
-     * @param  string  $method
-     * @param  string  $uri
-     * @param  array  $parameters
-     * @param  array  $cookies
-     * @param  array  $files
+     * @param string $method
+     * @param string $uri
+     * @param array  $parameters
+     * @param array  $cookies
+     * @param array  $files
+     *
      * @return $this
      */
     protected function makeRequest($method, $uri, $parameters = [], $cookies = [], $files = [])
@@ -186,8 +194,9 @@ trait CrawlerTrait
     /**
      * Make a request to the application using the given form.
      *
-     * @param  \Symfony\Component\DomCrawler\Form  $form
-     * @param  array  $uploads
+     * @param \Symfony\Component\DomCrawler\Form $form
+     * @param array                              $uploads
+     *
      * @return $this
      */
     protected function makeRequestUsingForm(Form $form, array $uploads = [])
@@ -202,7 +211,8 @@ trait CrawlerTrait
     /**
      * Extract the parameters from the given form.
      *
-     * @param  \Symfony\Component\DomCrawler\Form  $form
+     * @param \Symfony\Component\DomCrawler\Form $form
+     *
      * @return array
      */
     protected function extractParametersFromForm(Form $form)
@@ -243,8 +253,9 @@ trait CrawlerTrait
     /**
      * Assert that a given page successfully loaded.
      *
-     * @param  string  $uri
-     * @param  string|null  $message
+     * @param string      $uri
+     * @param string|null $message
+     *
      * @return void
      */
     protected function assertPageLoaded($uri, $message = null)
@@ -263,8 +274,9 @@ trait CrawlerTrait
     /**
      * Assert that a given string is seen on the page.
      *
-     * @param  string  $text
-     * @param  bool  $negate
+     * @param string $text
+     * @param bool   $negate
+     *
      * @return $this
      */
     protected function see($text, $negate = false)
@@ -283,7 +295,8 @@ trait CrawlerTrait
     /**
      * Assert that a given string is not seen on the page.
      *
-     * @param  string  $text
+     * @param string $text
+     *
      * @return $this
      */
     protected function dontSee($text)
@@ -294,8 +307,9 @@ trait CrawlerTrait
     /**
      * Assert that an input field contains the given value.
      *
-     * @param  string  $selector
-     * @param  string  $expected
+     * @param string $selector
+     * @param string $expected
+     *
      * @return $this
      */
     public function seeInField($selector, $expected)
@@ -311,7 +325,8 @@ trait CrawlerTrait
     /**
      * Assert that the given checkbox is selected.
      *
-     * @param  string  $selector
+     * @param string $selector
+     *
      * @return $this
      */
     public function seeIsChecked($selector)
@@ -327,8 +342,9 @@ trait CrawlerTrait
     /**
      * Assert that the expected value is selected.
      *
-     * @param  string  $selector
-     * @param  string  $expected
+     * @param string $selector
+     * @param string $expected
+     *
      * @return $this
      */
     public function seeIsSelected($selector, $expected)
@@ -344,10 +360,11 @@ trait CrawlerTrait
     /**
      * Get the value of an input or textarea.
      *
-     * @param  string  $selector
-     * @return string
+     * @param string $selector
      *
      * @throws \Exception
+     *
+     * @return string
      */
     protected function getInputOrTextAreaValue($selector)
     {
@@ -373,10 +390,11 @@ trait CrawlerTrait
     /**
      * Get the selected value of a select field or radio group.
      *
-     * @param  string  $selector
-     * @return string|null
+     * @param string $selector
      *
      * @throws \Exception
+     *
+     * @return string|null
      */
     protected function getSelectedValue($selector)
     {
@@ -402,10 +420,11 @@ trait CrawlerTrait
     /**
      * Get the selected value from a select field.
      *
-     * @param  \Symfony\Component\DomCrawler\Crawler  $field
-     * @return string|null
+     * @param \Symfony\Component\DomCrawler\Crawler $field
      *
      * @throws \Exception
+     *
+     * @return string|null
      */
     protected function getSelectedValueFromSelect(Crawler $field)
     {
@@ -425,10 +444,11 @@ trait CrawlerTrait
     /**
      * Get the checked value from a radio group.
      *
-     * @param  \Symfony\Component\DomCrawler\Crawler  $radioGroup
-     * @return string|null
+     * @param \Symfony\Component\DomCrawler\Crawler $radioGroup
      *
      * @throws \Exception
+     *
+     * @return string|null
      */
     protected function getCheckedValueFromRadioGroup(Crawler $radioGroup)
     {
@@ -448,10 +468,11 @@ trait CrawlerTrait
     /**
      * Return true if the given checkbox is checked, false otherwise.
      *
-     * @param  string  $selector
-     * @return bool
+     * @param string $selector
      *
      * @throws \Exception
+     *
+     * @return bool
      */
     protected function isChecked($selector)
     {
@@ -467,7 +488,8 @@ trait CrawlerTrait
     /**
      * Assert that the response contains JSON.
      *
-     * @param  array|null  $data
+     * @param array|null $data
+     *
      * @return $this
      */
     protected function shouldReturnJson(array $data = null)
@@ -478,14 +500,15 @@ trait CrawlerTrait
     /**
      * Assert that the response contains JSON.
      *
-     * @param  array|null  $data
+     * @param array|null $data
+     *
      * @return $this
      */
     protected function receiveJson($data = null)
     {
         $this->seeJson();
 
-        if (! is_null($data)) {
+        if (!is_null($data)) {
             return $this->seeJson($data);
         }
     }
@@ -493,7 +516,8 @@ trait CrawlerTrait
     /**
      * Assert that the response contains an exact JSON array.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return $this
      */
     public function seeJsonEquals(array $data)
@@ -510,8 +534,9 @@ trait CrawlerTrait
     /**
      * Assert that the response contains JSON.
      *
-     * @param  array|null  $data
-     * @param  bool  $negate
+     * @param array|null $data
+     * @param bool       $negate
+     *
      * @return $this
      */
     public function seeJson(array $data = null, $negate = false)
@@ -530,7 +555,8 @@ trait CrawlerTrait
     /**
      * Assert that the response doesn't contain JSON.
      *
-     * @param  array|null  $data
+     * @param array|null $data
+     *
      * @return $this
      */
     public function dontSeeJson(array $data = null)
@@ -541,8 +567,9 @@ trait CrawlerTrait
     /**
      * Assert that the response contains the given JSON.
      *
-     * @param  array  $data
-     * @param  bool  $negate
+     * @param array $data
+     * @param bool  $negate
+     *
      * @return $this
      */
     protected function seeJsonContains(array $data, $negate = false)
@@ -568,8 +595,9 @@ trait CrawlerTrait
     /**
      * Format the given key and value into a JSON string for expectation checks.
      *
-     * @param  string  $key
-     * @param  mixed  $value
+     * @param string $key
+     * @param mixed  $value
+     *
      * @return string
      */
     protected function formatToExpectedJson($key, $value)
@@ -590,7 +618,8 @@ trait CrawlerTrait
     /**
      * Asserts that the status code of the response matches the given code.
      *
-     * @param  int  $status
+     * @param int $status
+     *
      * @return $this
      */
     protected function seeStatusCode($status)
@@ -603,7 +632,8 @@ trait CrawlerTrait
     /**
      * Assert that the current page matches a given URI.
      *
-     * @param  string  $uri
+     * @param string $uri
+     *
      * @return $this
      */
     protected function seePageIs($uri)
@@ -614,7 +644,8 @@ trait CrawlerTrait
     /**
      * Assert that the current page matches a given URI.
      *
-     * @param  string  $uri
+     * @param string $uri
+     *
      * @return $this
      */
     protected function onPage($uri)
@@ -625,7 +656,8 @@ trait CrawlerTrait
     /**
      * Assert that the current page matches a given URI.
      *
-     * @param  string  $uri
+     * @param string $uri
+     *
      * @return $this
      */
     protected function landOn($uri)
@@ -642,8 +674,9 @@ trait CrawlerTrait
     /**
      * Asserts that the response contains the given header and equals the optional value.
      *
-     * @param  string $headerName
-     * @param  mixed $value
+     * @param string $headerName
+     * @param mixed  $value
+     *
      * @return $this
      */
     protected function seeHeader($headerName, $value = null)
@@ -652,7 +685,7 @@ trait CrawlerTrait
 
         $this->assertTrue($headers->has($headerName), "Header [{$headerName}] not present on response.");
 
-        if (! is_null($value)) {
+        if (!is_null($value)) {
             $this->assertEquals(
                 $headers->get($headerName), $value,
                 "Header [{$headerName}] was found, but value [{$headers->get($headerName)}] does not match [{$value}]."
@@ -665,8 +698,9 @@ trait CrawlerTrait
     /**
      * Asserts that the response contains the given cookie and equals the optional value.
      *
-     * @param  string $cookieName
-     * @param  mixed $value
+     * @param string $cookieName
+     * @param mixed  $value
+     *
      * @return $this
      */
     protected function seeCookie($cookieName, $value = null)
@@ -684,7 +718,7 @@ trait CrawlerTrait
 
         $this->assertTrue($exist, "Cookie [{$cookieName}] not present on response.");
 
-        if (! is_null($value)) {
+        if (!is_null($value)) {
             $this->assertEquals(
                 $cookie->getValue(), $value,
                 "Cookie [{$cookieName}] was found, but value [{$cookie->getValue()}] does not match [{$value}]."
@@ -697,17 +731,18 @@ trait CrawlerTrait
     /**
      * Click a link with the given body, name, or ID attribute.
      *
-     * @param  string  $name
+     * @param string $name
+     *
      * @return $this
      */
     protected function click($name)
     {
         $link = $this->crawler->selectLink($name);
 
-        if (! count($link)) {
+        if (!count($link)) {
             $link = $this->filterByNameOrId($name, 'a');
 
-            if (! count($link)) {
+            if (!count($link)) {
                 throw new InvalidArgumentException(
                     "Could not find a link with a body, name, or ID attribute of [{$name}]."
                 );
@@ -722,8 +757,9 @@ trait CrawlerTrait
     /**
      * Fill an input field with the given text.
      *
-     * @param  string  $text
-     * @param  string  $element
+     * @param string $text
+     * @param string $element
+     *
      * @return $this
      */
     protected function type($text, $element)
@@ -734,7 +770,8 @@ trait CrawlerTrait
     /**
      * Check a checkbox on the page.
      *
-     * @param  string  $element
+     * @param string $element
+     *
      * @return $this
      */
     protected function check($element)
@@ -745,7 +782,8 @@ trait CrawlerTrait
     /**
      * Uncheck a checkbox on the page.
      *
-     * @param  string  $element
+     * @param string $element
+     *
      * @return $this
      */
     protected function uncheck($element)
@@ -756,8 +794,9 @@ trait CrawlerTrait
     /**
      * Select an option from a drop-down.
      *
-     * @param  string  $option
-     * @param  string  $element
+     * @param string $option
+     * @param string $element
+     *
      * @return $this
      */
     protected function select($option, $element)
@@ -768,8 +807,9 @@ trait CrawlerTrait
     /**
      * Attach a file to a form field on the page.
      *
-     * @param  string  $absolutePath
-     * @param  string  $element
+     * @param string $absolutePath
+     * @param string $element
+     *
      * @return $this
      */
     protected function attach($absolutePath, $element)
@@ -782,7 +822,8 @@ trait CrawlerTrait
     /**
      * Submit a form using the button with the given text value.
      *
-     * @param  string  $buttonText
+     * @param string $buttonText
+     *
      * @return $this
      */
     protected function press($buttonText)
@@ -793,9 +834,10 @@ trait CrawlerTrait
     /**
      * Submit a form on the page with the given input.
      *
-     * @param  string  $buttonText
-     * @param  array  $inputs
-     * @param  array  $uploads
+     * @param string $buttonText
+     * @param array  $inputs
+     * @param array  $uploads
+     *
      * @return $this
      */
     protected function submitForm($buttonText, $inputs = [], $uploads = [])
@@ -808,13 +850,14 @@ trait CrawlerTrait
     /**
      * Fill the form with the given data.
      *
-     * @param  string  $buttonText
-     * @param  array  $inputs
+     * @param string $buttonText
+     * @param array  $inputs
+     *
      * @return \Symfony\Component\DomCrawler\Form
      */
     protected function fillForm($buttonText, $inputs = [])
     {
-        if (! is_string($buttonText)) {
+        if (!is_string($buttonText)) {
             $inputs = $buttonText;
 
             $buttonText = null;
@@ -826,7 +869,8 @@ trait CrawlerTrait
     /**
      * Get the form from the page with the given submit button text.
      *
-     * @param  string|null  $buttonText
+     * @param string|null $buttonText
+     *
      * @return \Symfony\Component\DomCrawler\Form
      */
     protected function getForm($buttonText = null)
@@ -847,8 +891,9 @@ trait CrawlerTrait
     /**
      * Store a form input in the local array.
      *
-     * @param  string  $element
-     * @param  string  $text
+     * @param string $element
+     * @param string $text
+     *
      * @return $this
      */
     protected function storeInput($element, $text)
@@ -865,14 +910,15 @@ trait CrawlerTrait
     /**
      * Assert that a filtered Crawler returns nodes.
      *
-     * @param  string  $filter
+     * @param string $filter
+     *
      * @return void
      */
     protected function assertFilterProducesResults($filter)
     {
         $crawler = $this->filterByNameOrId($filter);
 
-        if (! count($crawler)) {
+        if (!count($crawler)) {
             throw new InvalidArgumentException(
                 "Nothing matched the filter [{$filter}] CSS query provided for [{$this->currentUri}]."
             );
@@ -882,8 +928,9 @@ trait CrawlerTrait
     /**
      * Filter elements according to the given name or ID attribute.
      *
-     * @param  string  $name
-     * @param  string  $element
+     * @param string $name
+     * @param string $element
+     *
      * @return \Symfony\Component\DomCrawler\Crawler
      */
     protected function filterByNameOrId($name, $element = '*')
@@ -896,13 +943,14 @@ trait CrawlerTrait
     /**
      * Call the given URI and return the Response.
      *
-     * @param  string  $method
-     * @param  string  $uri
-     * @param  array   $parameters
-     * @param  array   $cookies
-     * @param  array   $files
-     * @param  array   $server
-     * @param  string  $content
+     * @param string $method
+     * @param string $uri
+     * @param array  $parameters
+     * @param array  $cookies
+     * @param array  $files
+     * @param array  $server
+     * @param string $content
+     *
      * @return \Illuminate\Http\Response
      */
     public function call($method, $uri, $parameters = [], $cookies = [], $files = [], $server = [], $content = null)
@@ -926,13 +974,14 @@ trait CrawlerTrait
     /**
      * Call the given HTTPS URI and return the Response.
      *
-     * @param  string  $method
-     * @param  string  $uri
-     * @param  array   $parameters
-     * @param  array   $cookies
-     * @param  array   $files
-     * @param  array   $server
-     * @param  string  $content
+     * @param string $method
+     * @param string $uri
+     * @param array  $parameters
+     * @param array  $cookies
+     * @param array  $files
+     * @param array  $server
+     * @param string $content
+     *
      * @return \Illuminate\Http\Response
      */
     public function callSecure($method, $uri, $parameters = [], $cookies = [], $files = [], $server = [], $content = null)
@@ -945,14 +994,15 @@ trait CrawlerTrait
     /**
      * Call a controller action and return the Response.
      *
-     * @param  string  $method
-     * @param  string  $action
-     * @param  array   $wildcards
-     * @param  array   $parameters
-     * @param  array   $cookies
-     * @param  array   $files
-     * @param  array   $server
-     * @param  string  $content
+     * @param string $method
+     * @param string $action
+     * @param array  $wildcards
+     * @param array  $parameters
+     * @param array  $cookies
+     * @param array  $files
+     * @param array  $server
+     * @param string $content
+     *
      * @return \Illuminate\Http\Response
      */
     public function action($method, $action, $wildcards = [], $parameters = [], $cookies = [], $files = [], $server = [], $content = null)
@@ -965,14 +1015,15 @@ trait CrawlerTrait
     /**
      * Call a named route and return the Response.
      *
-     * @param  string  $method
-     * @param  string  $name
-     * @param  array   $routeParameters
-     * @param  array   $parameters
-     * @param  array   $cookies
-     * @param  array   $files
-     * @param  array   $server
-     * @param  string  $content
+     * @param string $method
+     * @param string $name
+     * @param array  $routeParameters
+     * @param array  $parameters
+     * @param array  $cookies
+     * @param array  $files
+     * @param array  $server
+     * @param string $content
+     *
      * @return \Illuminate\Http\Response
      */
     public function route($method, $name, $routeParameters = [], $parameters = [], $cookies = [], $files = [], $server = [], $content = null)
@@ -985,7 +1036,8 @@ trait CrawlerTrait
     /**
      * Turn the given URI into a fully qualified URL.
      *
-     * @param  string  $uri
+     * @param string $uri
+     *
      * @return string
      */
     protected function prepareUrlForRequest($uri)
@@ -994,7 +1046,7 @@ trait CrawlerTrait
             $uri = substr($uri, 1);
         }
 
-        if (! Str::startsWith($uri, 'http')) {
+        if (!Str::startsWith($uri, 'http')) {
             $uri = $this->baseUrl.'/'.$uri;
         }
 
@@ -1004,7 +1056,8 @@ trait CrawlerTrait
     /**
      * Transform headers array to array of $_SERVER vars with HTTP_* format.
      *
-     * @param  array  $headers
+     * @param array $headers
+     *
      * @return array
      */
     protected function transformHeadersToServerVars(array $headers)
@@ -1015,7 +1068,7 @@ trait CrawlerTrait
         foreach ($headers as $name => $value) {
             $name = strtr(strtoupper($name), '-', '_');
 
-            if (! starts_with($name, $prefix) && $name != 'CONTENT_TYPE') {
+            if (!starts_with($name, $prefix) && $name != 'CONTENT_TYPE') {
                 $name = $prefix.$name;
             }
 
@@ -1028,8 +1081,9 @@ trait CrawlerTrait
     /**
      * Convert the given uploads to UploadedFile instances.
      *
-     * @param  \Symfony\Component\DomCrawler\Form  $form
-     * @param  array  $uploads
+     * @param \Symfony\Component\DomCrawler\Form $form
+     * @param array                              $uploads
+     *
      * @return array
      */
     protected function convertUploadsForTesting(Form $form, array $uploads)
@@ -1050,9 +1104,10 @@ trait CrawlerTrait
     /**
      * Create an UploadedFile instance for testing.
      *
-     * @param  array  $file
-     * @param  array  $uploads
-     * @param  string  $name
+     * @param array  $file
+     * @param array  $uploads
+     * @param string $name
+     *
      * @return \Symfony\Component\HttpFoundation\File\UploadedFile
      */
     protected function getUploadedFileForTesting($file, $uploads, $name)

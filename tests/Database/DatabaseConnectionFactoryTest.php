@@ -22,7 +22,7 @@ class DatabaseConnectionFactoryTest extends PHPUnit_Framework_TestCase
         $container->shouldReceive('bound')->andReturn(false);
         $connector = m::mock('stdClass');
         $config = ['driver' => 'mysql', 'prefix' => 'prefix', 'database' => 'database', 'name' => 'foo'];
-        $pdo = new DatabaseConnectionFactoryPDOStub;
+        $pdo = new DatabaseConnectionFactoryPDOStub();
         $connector->shouldReceive('connect')->once()->with($config)->andReturn($pdo);
         $factory->expects($this->once())->method('createConnector')->with($config)->will($this->returnValue($connector));
         $mockConnection = m::mock('stdClass');
@@ -39,15 +39,15 @@ class DatabaseConnectionFactoryTest extends PHPUnit_Framework_TestCase
         $container->shouldReceive('bound')->andReturn(false);
         $connector = m::mock('stdClass');
         $config = [
-            'read' => ['database' => 'database'],
-            'write' => ['database' => 'database'],
+            'read'   => ['database' => 'database'],
+            'write'  => ['database' => 'database'],
             'driver' => 'mysql', 'prefix' => 'prefix', 'name' => 'foo',
         ];
         $expect = $config;
         unset($expect['read']);
         unset($expect['write']);
         $expect['database'] = 'database';
-        $pdo = new DatabaseConnectionFactoryPDOStub;
+        $pdo = new DatabaseConnectionFactoryPDOStub();
         $connector->shouldReceive('connect')->twice()->with($expect)->andReturn($pdo);
         $factory->expects($this->exactly(2))->method('createConnector')->with($expect)->will($this->returnValue($connector));
         $mockConnection = m::mock('stdClass');
@@ -65,7 +65,7 @@ class DatabaseConnectionFactoryTest extends PHPUnit_Framework_TestCase
         $container->shouldReceive('bound')->andReturn(true);
         $connector = m::mock('stdClass');
         $config = ['driver' => 'mysql', 'prefix' => 'prefix', 'database' => 'database', 'name' => 'foo'];
-        $pdo = new DatabaseConnectionFactoryPDOStub;
+        $pdo = new DatabaseConnectionFactoryPDOStub();
         $connector->shouldReceive('connect')->once()->with($config)->andReturn($pdo);
         $passedConfig = array_merge($config, ['name' => 'foo']);
         $factory->expects($this->once())->method('createConnector')->with($config)->will($this->returnValue($connector));

@@ -2,8 +2,8 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Connection;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model as Eloquent;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class DatabaseEloquentSoftDeletesIntegrationTest extends PHPUnit_Framework_TestCase
 {
@@ -15,11 +15,11 @@ class DatabaseEloquentSoftDeletesIntegrationTest extends PHPUnit_Framework_TestC
     public static function setUpBeforeClass()
     {
         Eloquent::setConnectionResolver(
-            new SoftDeletesDatabaseIntegrationTestConnectionResolver
+            new SoftDeletesDatabaseIntegrationTestConnectionResolver()
         );
 
         Eloquent::setEventDispatcher(
-            new Illuminate\Events\Dispatcher
+            new Illuminate\Events\Dispatcher()
         );
     }
 

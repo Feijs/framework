@@ -2,34 +2,34 @@
 
 namespace Illuminate\Foundation\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Foundation\Console\UpCommand;
-use Illuminate\Foundation\Console\DownCommand;
-use Illuminate\Foundation\Console\ServeCommand;
-use Illuminate\Foundation\Console\TinkerCommand;
-use Illuminate\Foundation\Console\JobMakeCommand;
 use Illuminate\Foundation\Console\AppNameCommand;
-use Illuminate\Foundation\Console\OptimizeCommand;
-use Illuminate\Foundation\Console\RouteListCommand;
-use Illuminate\Foundation\Console\EventMakeCommand;
-use Illuminate\Foundation\Console\ModelMakeCommand;
-use Illuminate\Foundation\Console\ViewClearCommand;
-use Illuminate\Foundation\Console\RouteCacheCommand;
-use Illuminate\Foundation\Console\RouteClearCommand;
+use Illuminate\Foundation\Console\ClearCompiledCommand;
 use Illuminate\Foundation\Console\CommandMakeCommand;
 use Illuminate\Foundation\Console\ConfigCacheCommand;
 use Illuminate\Foundation\Console\ConfigClearCommand;
 use Illuminate\Foundation\Console\ConsoleMakeCommand;
+use Illuminate\Foundation\Console\DownCommand;
 use Illuminate\Foundation\Console\EnvironmentCommand;
-use Illuminate\Foundation\Console\KeyGenerateCommand;
-use Illuminate\Foundation\Console\RequestMakeCommand;
-use Illuminate\Foundation\Console\ListenerMakeCommand;
-use Illuminate\Foundation\Console\ProviderMakeCommand;
-use Illuminate\Foundation\Console\HandlerEventCommand;
-use Illuminate\Foundation\Console\ClearCompiledCommand;
 use Illuminate\Foundation\Console\EventGenerateCommand;
-use Illuminate\Foundation\Console\VendorPublishCommand;
+use Illuminate\Foundation\Console\EventMakeCommand;
 use Illuminate\Foundation\Console\HandlerCommandCommand;
+use Illuminate\Foundation\Console\HandlerEventCommand;
+use Illuminate\Foundation\Console\JobMakeCommand;
+use Illuminate\Foundation\Console\KeyGenerateCommand;
+use Illuminate\Foundation\Console\ListenerMakeCommand;
+use Illuminate\Foundation\Console\ModelMakeCommand;
+use Illuminate\Foundation\Console\OptimizeCommand;
+use Illuminate\Foundation\Console\ProviderMakeCommand;
+use Illuminate\Foundation\Console\RequestMakeCommand;
+use Illuminate\Foundation\Console\RouteCacheCommand;
+use Illuminate\Foundation\Console\RouteClearCommand;
+use Illuminate\Foundation\Console\RouteListCommand;
+use Illuminate\Foundation\Console\ServeCommand;
+use Illuminate\Foundation\Console\TinkerCommand;
+use Illuminate\Foundation\Console\UpCommand;
+use Illuminate\Foundation\Console\VendorPublishCommand;
+use Illuminate\Foundation\Console\ViewClearCommand;
+use Illuminate\Support\ServiceProvider;
 
 class ArtisanServiceProvider extends ServiceProvider
 {
@@ -46,33 +46,33 @@ class ArtisanServiceProvider extends ServiceProvider
      * @var array
      */
     protected $commands = [
-        'AppName' => 'command.app.name',
-        'ClearCompiled' => 'command.clear-compiled',
-        'CommandMake' => 'command.command.make',
-        'ConfigCache' => 'command.config.cache',
-        'ConfigClear' => 'command.config.clear',
-        'ConsoleMake' => 'command.console.make',
-        'EventGenerate' => 'command.event.generate',
-        'EventMake' => 'command.event.make',
-        'Down' => 'command.down',
-        'Environment' => 'command.environment',
+        'AppName'        => 'command.app.name',
+        'ClearCompiled'  => 'command.clear-compiled',
+        'CommandMake'    => 'command.command.make',
+        'ConfigCache'    => 'command.config.cache',
+        'ConfigClear'    => 'command.config.clear',
+        'ConsoleMake'    => 'command.console.make',
+        'EventGenerate'  => 'command.event.generate',
+        'EventMake'      => 'command.event.make',
+        'Down'           => 'command.down',
+        'Environment'    => 'command.environment',
         'HandlerCommand' => 'command.handler.command',
-        'HandlerEvent' => 'command.handler.event',
-        'JobMake' => 'command.job.make',
-        'KeyGenerate' => 'command.key.generate',
-        'ListenerMake' => 'command.listener.make',
-        'ModelMake' => 'command.model.make',
-        'Optimize' => 'command.optimize',
-        'ProviderMake' => 'command.provider.make',
-        'RequestMake' => 'command.request.make',
-        'RouteCache' => 'command.route.cache',
-        'RouteClear' => 'command.route.clear',
-        'RouteList' => 'command.route.list',
-        'Serve' => 'command.serve',
-        'Tinker' => 'command.tinker',
-        'Up' => 'command.up',
-        'VendorPublish' => 'command.vendor.publish',
-        'ViewClear' => 'command.view.clear',
+        'HandlerEvent'   => 'command.handler.event',
+        'JobMake'        => 'command.job.make',
+        'KeyGenerate'    => 'command.key.generate',
+        'ListenerMake'   => 'command.listener.make',
+        'ModelMake'      => 'command.model.make',
+        'Optimize'       => 'command.optimize',
+        'ProviderMake'   => 'command.provider.make',
+        'RequestMake'    => 'command.request.make',
+        'RouteCache'     => 'command.route.cache',
+        'RouteClear'     => 'command.route.clear',
+        'RouteList'      => 'command.route.list',
+        'Serve'          => 'command.serve',
+        'Tinker'         => 'command.tinker',
+        'Up'             => 'command.up',
+        'VendorPublish'  => 'command.vendor.publish',
+        'ViewClear'      => 'command.view.clear',
     ];
 
     /**
@@ -111,7 +111,7 @@ class ArtisanServiceProvider extends ServiceProvider
     protected function registerClearCompiledCommand()
     {
         $this->app->singleton('command.clear-compiled', function () {
-            return new ClearCompiledCommand;
+            return new ClearCompiledCommand();
         });
     }
 
@@ -171,7 +171,7 @@ class ArtisanServiceProvider extends ServiceProvider
     protected function registerEventGenerateCommand()
     {
         $this->app->singleton('command.event.generate', function () {
-            return new EventGenerateCommand;
+            return new EventGenerateCommand();
         });
     }
 
@@ -195,7 +195,7 @@ class ArtisanServiceProvider extends ServiceProvider
     protected function registerDownCommand()
     {
         $this->app->singleton('command.down', function () {
-            return new DownCommand;
+            return new DownCommand();
         });
     }
 
@@ -207,7 +207,7 @@ class ArtisanServiceProvider extends ServiceProvider
     protected function registerEnvironmentCommand()
     {
         $this->app->singleton('command.environment', function () {
-            return new EnvironmentCommand;
+            return new EnvironmentCommand();
         });
     }
 
@@ -255,7 +255,7 @@ class ArtisanServiceProvider extends ServiceProvider
     protected function registerKeyGenerateCommand()
     {
         $this->app->singleton('command.key.generate', function () {
-            return new KeyGenerateCommand;
+            return new KeyGenerateCommand();
         });
     }
 
@@ -363,7 +363,7 @@ class ArtisanServiceProvider extends ServiceProvider
     protected function registerServeCommand()
     {
         $this->app->singleton('command.serve', function () {
-            return new ServeCommand;
+            return new ServeCommand();
         });
     }
 
@@ -375,7 +375,7 @@ class ArtisanServiceProvider extends ServiceProvider
     protected function registerTinkerCommand()
     {
         $this->app->singleton('command.tinker', function () {
-            return new TinkerCommand;
+            return new TinkerCommand();
         });
     }
 
@@ -387,7 +387,7 @@ class ArtisanServiceProvider extends ServiceProvider
     protected function registerUpCommand()
     {
         $this->app->singleton('command.up', function () {
-            return new UpCommand;
+            return new UpCommand();
         });
     }
 

@@ -1,7 +1,7 @@
 <?php
 
-use Mockery as m;
 use Illuminate\Http\Request;
+use Mockery as m;
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
 class HttpRequestTest extends PHPUnit_Framework_TestCase
@@ -193,11 +193,11 @@ class HttpRequestTest extends PHPUnit_Framework_TestCase
     public function testOnlyMethod()
     {
         $request = Request::create('/', 'GET', ['name' => 'Taylor', 'age' => 25]);
-        $this->assertEquals(['age' => 25], $request->only('age'));
+        $this->assertEquals(['age'  => 25], $request->only('age'));
         $this->assertEquals(['name' => 'Taylor', 'age' => 25], $request->only('name', 'age'));
 
         $request = Request::create('/', 'GET', ['developer' => ['name' => 'Taylor', 'age' => 25]]);
-        $this->assertEquals(['developer' => ['age' => 25]], $request->only('developer.age'));
+        $this->assertEquals(['developer' => ['age'  => 25]], $request->only('developer.age'));
         $this->assertEquals(['developer' => ['name' => 'Taylor'], 'test' => null], $request->only('developer.name', 'test'));
     }
 
@@ -237,11 +237,11 @@ class HttpRequestTest extends PHPUnit_Framework_TestCase
     {
         $files = [
             'foo' => [
-                'size' => 500,
-                'name' => 'foo.jpg',
+                'size'     => 500,
+                'name'     => 'foo.jpg',
                 'tmp_name' => __FILE__,
-                'type' => 'blah',
-                'error' => null,
+                'type'     => 'blah',
+                'error'    => null,
             ],
         ];
         $request = Request::create('/', 'GET', [], [], $files);
@@ -255,11 +255,11 @@ class HttpRequestTest extends PHPUnit_Framework_TestCase
 
         $files = [
             'foo' => [
-                'size' => 500,
-                'name' => 'foo.jpg',
+                'size'     => 500,
+                'name'     => 'foo.jpg',
                 'tmp_name' => __FILE__,
-                'type' => 'blah',
-                'error' => null,
+                'type'     => 'blah',
+                'error'    => null,
             ],
         ];
         $request = Request::create('/', 'GET', [], [], $files);
@@ -367,7 +367,7 @@ class HttpRequestTest extends PHPUnit_Framework_TestCase
     {
         $request = Request::create('/?boom=breeze', 'GET', ['foo' => ['bar' => 'baz']]);
         $request->replace(['foo' => ['bar' => 'baz'], 'boom' => 'breeze']);
-        $this->assertEquals(['foo' => ['bar' => 'baz'], 'boom' => 'breeze'], $request->all());
+        $this->assertEquals(['foo'         => ['bar' => 'baz'], 'boom' => 'breeze'], $request->all());
     }
 
     public function testAllInputWithNumericKeysReturnsInputAfterReplace()
@@ -385,11 +385,11 @@ class HttpRequestTest extends PHPUnit_Framework_TestCase
     {
         $invalidFiles = [
             'file' => [
-                'name' => null,
-                'type' => null,
+                'name'     => null,
+                'type'     => null,
                 'tmp_name' => null,
-                'error' => 4,
-                'size' => 0,
+                'error'    => 4,
+                'size'     => 0,
             ],
         ];
 

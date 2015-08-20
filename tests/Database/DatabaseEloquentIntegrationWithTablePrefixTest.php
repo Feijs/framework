@@ -11,12 +11,12 @@ class DatabaseEloquentIntegrationWithTablePrefixTest extends DatabaseEloquentInt
      */
     public static function setUpBeforeClass()
     {
-        $resolver = new DatabaseIntegrationTestConnectionResolver;
+        $resolver = new DatabaseIntegrationTestConnectionResolver();
         $resolver->connection()->setTablePrefix('prefix_');
         Eloquent::setConnectionResolver($resolver);
 
         Eloquent::setEventDispatcher(
-            new Illuminate\Events\Dispatcher
+            new Illuminate\Events\Dispatcher()
         );
     }
 

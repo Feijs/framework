@@ -28,7 +28,8 @@ class MySqlGrammar extends Grammar
     /**
      * Compile a select query into SQL.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
+     * @param \Illuminate\Database\Query\Builder $query
+     *
      * @return string
      */
     public function compileSelect(Builder $query)
@@ -45,7 +46,8 @@ class MySqlGrammar extends Grammar
     /**
      * Compile a single union statement.
      *
-     * @param  array  $union
+     * @param array $union
+     *
      * @return string
      */
     protected function compileUnion(array $union)
@@ -58,8 +60,9 @@ class MySqlGrammar extends Grammar
     /**
      * Compile the lock into SQL.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  bool|string  $value
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param bool|string                        $value
+     *
      * @return string
      */
     protected function compileLock(Builder $query, $value)
@@ -74,8 +77,9 @@ class MySqlGrammar extends Grammar
     /**
      * Compile an update statement into SQL.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $values
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param array                              $values
+     *
      * @return string
      */
     public function compileUpdate(Builder $query, $values)
@@ -96,7 +100,8 @@ class MySqlGrammar extends Grammar
     /**
      * Compile a delete statement into SQL.
      *
-     * @param  \Illuminate\Database\Query\Builder  $query
+     * @param \Illuminate\Database\Query\Builder $query
+     *
      * @return string
      */
     public function compileDelete(Builder $query)
@@ -127,7 +132,8 @@ class MySqlGrammar extends Grammar
     /**
      * Wrap a single string in keyword identifiers.
      *
-     * @param  string  $value
+     * @param string $value
+     *
      * @return string
      */
     protected function wrapValue($value)

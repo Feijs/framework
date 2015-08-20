@@ -12,7 +12,7 @@ class PipelineTest extends PHPUnit_Framework_TestCase
             return $next($piped);
         };
 
-        $result = (new Pipeline(new Illuminate\Container\Container))
+        $result = (new Pipeline(new Illuminate\Container\Container()))
                     ->send('foo')
                     ->through(['PipelineTestPipeOne', $pipeTwo])
                     ->then(function ($piped) {
@@ -31,7 +31,7 @@ class PipelineTest extends PHPUnit_Framework_TestCase
     {
         $parameters = ['one','two'];
 
-        $result = (new Pipeline(new Illuminate\Container\Container))
+        $result = (new Pipeline(new Illuminate\Container\Container()))
             ->send('foo')
             ->through('PipelineTestParameterPipe:'.implode(',', $parameters))
             ->then(function ($piped) {

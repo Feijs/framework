@@ -1,9 +1,9 @@
 <?php
 
-use Mockery as m;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Mockery as m;
 
 class DatabaseEloquentHasManyThroughTest extends PHPUnit_Framework_TestCase
 {
@@ -27,9 +27,9 @@ class DatabaseEloquentHasManyThroughTest extends PHPUnit_Framework_TestCase
     {
         $relation = $this->getRelation();
         $relation->getQuery()->shouldReceive('whereIn')->once()->with('users.country_id', [1, 2]);
-        $model1 = new EloquentHasManyThroughModelStub;
+        $model1 = new EloquentHasManyThroughModelStub();
         $model1->id = 1;
-        $model2 = new EloquentHasManyThroughModelStub;
+        $model2 = new EloquentHasManyThroughModelStub();
         $model2->id = 2;
         $relation->addEagerConstraints([$model1, $model2]);
     }
@@ -38,18 +38,18 @@ class DatabaseEloquentHasManyThroughTest extends PHPUnit_Framework_TestCase
     {
         $relation = $this->getRelation();
 
-        $result1 = new EloquentHasManyThroughModelStub;
+        $result1 = new EloquentHasManyThroughModelStub();
         $result1->country_id = 1;
-        $result2 = new EloquentHasManyThroughModelStub;
+        $result2 = new EloquentHasManyThroughModelStub();
         $result2->country_id = 2;
-        $result3 = new EloquentHasManyThroughModelStub;
+        $result3 = new EloquentHasManyThroughModelStub();
         $result3->country_id = 2;
 
-        $model1 = new EloquentHasManyThroughModelStub;
+        $model1 = new EloquentHasManyThroughModelStub();
         $model1->id = 1;
-        $model2 = new EloquentHasManyThroughModelStub;
+        $model2 = new EloquentHasManyThroughModelStub();
         $model2->id = 2;
-        $model3 = new EloquentHasManyThroughModelStub;
+        $model3 = new EloquentHasManyThroughModelStub();
         $model3->id = 3;
 
         $relation->getRelated()->shouldReceive('newCollection')->andReturnUsing(function ($array) { return new Collection($array); });
@@ -67,18 +67,18 @@ class DatabaseEloquentHasManyThroughTest extends PHPUnit_Framework_TestCase
     {
         $relation = $this->getRelationForNonPrimaryKey();
 
-        $result1 = new EloquentHasManyThroughModelStub;
+        $result1 = new EloquentHasManyThroughModelStub();
         $result1->country_id = 1;
-        $result2 = new EloquentHasManyThroughModelStub;
+        $result2 = new EloquentHasManyThroughModelStub();
         $result2->country_id = 2;
-        $result3 = new EloquentHasManyThroughModelStub;
+        $result3 = new EloquentHasManyThroughModelStub();
         $result3->country_id = 2;
 
-        $model1 = new EloquentHasManyThroughModelStub;
+        $model1 = new EloquentHasManyThroughModelStub();
         $model1->id = 1;
-        $model2 = new EloquentHasManyThroughModelStub;
+        $model2 = new EloquentHasManyThroughModelStub();
         $model2->id = 2;
-        $model3 = new EloquentHasManyThroughModelStub;
+        $model3 = new EloquentHasManyThroughModelStub();
         $model3->id = 3;
 
         $relation->getRelated()->shouldReceive('newCollection')->andReturnUsing(function ($array) { return new Collection($array); });
@@ -140,7 +140,7 @@ class DatabaseEloquentHasManyThroughTest extends PHPUnit_Framework_TestCase
     {
         $relation = m::mock('Illuminate\Database\Eloquent\Relations\HasManyThrough[first]', $this->getRelationArguments());
         $relation->shouldReceive('where')->with('posts.id', '=', 'foo')->once()->andReturn($relation);
-        $relation->shouldReceive('first')->once()->andReturn(new StdClass);
+        $relation->shouldReceive('first')->once()->andReturn(new StdClass());
 
         $related = $relation->getRelated();
         $related->shouldReceive('getQualifiedKeyName')->once()->andReturn('posts.id');
@@ -163,7 +163,7 @@ class DatabaseEloquentHasManyThroughTest extends PHPUnit_Framework_TestCase
     public function testIgnoreSoftDeletingParent()
     {
         list($builder, $country, , $firstKey, $secondKey) = $this->getRelationArguments();
-        $user = new EloquentHasManyThroughSoftDeletingModelStub;
+        $user = new EloquentHasManyThroughSoftDeletingModelStub();
 
         $builder->shouldReceive('whereNull')->with('users.deleted_at')->once()->andReturn($builder);
 

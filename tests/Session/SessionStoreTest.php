@@ -103,9 +103,9 @@ class SessionStoreTest extends PHPUnit_Framework_TestCase
             $this->getSessionId(),
             serialize([
                 '_token' => $session->token(),
-                'foo' => 'bar',
-                'baz' => 'boom',
-                'flash' => [
+                'foo'    => 'bar',
+                'baz'    => 'boom',
+                'flash'  => [
                     'new' => [],
                     'old' => ['baz'],
                 ],

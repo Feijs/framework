@@ -1,7 +1,7 @@
 <?php
 
-use Mockery as m;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Mockery as m;
 
 class DatabaseEloquentRelationTest extends PHPUnit_Framework_TestCase
 {
@@ -12,8 +12,8 @@ class DatabaseEloquentRelationTest extends PHPUnit_Framework_TestCase
 
     public function testSetRelationFail()
     {
-        $parent = new EloquentRelationResetModelStub;
-        $relation = new EloquentRelationResetModelStub;
+        $parent = new EloquentRelationResetModelStub();
+        $relation = new EloquentRelationResetModelStub();
         $parent->setRelation('test', $relation);
         $parent->setRelation('foo', 'bar');
         $this->assertArrayNotHasKey('foo', $parent->toArray());

@@ -14,11 +14,11 @@ class DatabaseEloquentIntegrationTest extends PHPUnit_Framework_TestCase
     public static function setUpBeforeClass()
     {
         Eloquent::setConnectionResolver(
-            new DatabaseIntegrationTestConnectionResolver
+            new DatabaseIntegrationTestConnectionResolver()
         );
 
         Eloquent::setEventDispatcher(
-            new Illuminate\Events\Dispatcher
+            new Illuminate\Events\Dispatcher()
         );
     }
 
@@ -373,7 +373,7 @@ class DatabaseEloquentIntegrationTest extends PHPUnit_Framework_TestCase
 
     public function testToArrayIncludesDefaultFormattedTimestamps()
     {
-        $model = new EloquentTestUser;
+        $model = new EloquentTestUser();
 
         $model->setRawAttributes([
             'created_at'    => '2012-12-04',
@@ -388,7 +388,7 @@ class DatabaseEloquentIntegrationTest extends PHPUnit_Framework_TestCase
 
     public function testToArrayIncludesCustomFormattedTimestamps()
     {
-        $model = new EloquentTestUser;
+        $model = new EloquentTestUser();
         $model->setDateFormat('d-m-y');
 
         $model->setRawAttributes([

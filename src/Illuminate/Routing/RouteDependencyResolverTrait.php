@@ -2,17 +2,18 @@
 
 namespace Illuminate\Routing;
 
-use ReflectionMethod;
 use Illuminate\Support\Arr;
 use ReflectionFunctionAbstract;
+use ReflectionMethod;
 
 trait RouteDependencyResolverTrait
 {
     /**
      * Call a class method with the resolved dependencies.
      *
-     * @param  object  $instance
-     * @param  string  $method
+     * @param object $instance
+     * @param string $method
+     *
      * @return mixed
      */
     protected function callWithDependencies($instance, $method)
@@ -25,14 +26,15 @@ trait RouteDependencyResolverTrait
     /**
      * Resolve the object method's type-hinted dependencies.
      *
-     * @param  array  $parameters
-     * @param  object  $instance
-     * @param  string  $method
+     * @param array  $parameters
+     * @param object $instance
+     * @param string $method
+     *
      * @return array
      */
     protected function resolveClassMethodDependencies(array $parameters, $instance, $method)
     {
-        if (! method_exists($instance, $method)) {
+        if (!method_exists($instance, $method)) {
             return $parameters;
         }
 
@@ -44,8 +46,9 @@ trait RouteDependencyResolverTrait
     /**
      * Resolve the given method's type-hinted dependencies.
      *
-     * @param  array  $parameters
-     * @param  \ReflectionFunctionAbstract  $reflector
+     * @param array                       $parameters
+     * @param \ReflectionFunctionAbstract $reflector
+     *
      * @return array
      */
     public function resolveMethodDependencies(array $parameters, ReflectionFunctionAbstract $reflector)
@@ -56,7 +59,7 @@ trait RouteDependencyResolverTrait
             // binding and we do not want to mess with those; otherwise, we resolve it here.
             $class = $parameter->getClass();
 
-            if ($class && ! $this->alreadyInParameters($class->name, $parameters)) {
+            if ($class && !$this->alreadyInParameters($class->name, $parameters)) {
                 array_splice(
                     $parameters, $key, 0, [$this->container->make($class->name)]
                 );
@@ -69,13 +72,14 @@ trait RouteDependencyResolverTrait
     /**
      * Determine if an object of the given class is in a list of parameters.
      *
-     * @param  string  $class
-     * @param  array  $parameters
+     * @param string $class
+     * @param array  $parameters
+     *
      * @return bool
      */
     protected function alreadyInParameters($class, array $parameters)
     {
-        return ! is_null(Arr::first($parameters, function ($key, $value) use ($class) {
+        return !is_null(Arr::first($parameters, function ($key, $value) use ($class) {
             return $value instanceof $class;
         }));
     }
